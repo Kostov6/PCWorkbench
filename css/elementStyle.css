@@ -1,0 +1,82 @@
+@media screen and (max-width: 800px) {
+}
+
+.content {
+  margin: 0px;
+  font-family: "Montserrat";
+
+  display: grid;
+  grid-template-columns: 20% auto;
+  grid-gap: 15px;
+  padding: 15px;
+}
+
+.image {
+  height: 3em;
+  width: 3em;
+}
+
+.container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+#filters {
+  font-size: 0.9em;
+}
+
+.chosenComponent {
+  height: 100%;
+  float: left;
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.incompatible-message {
+  opacity: 1;
+  text-align: center;
+  padding-top: 0.7em;
+  color: red;
+  font-weight: bold;
+}
+
+#chosen a {
+  font-size: 0.8em;
+}
+
+custom-control.custom-checkbox {
+  padding-left: 0;
+}
+
+label.right.custom-control-label,
+label.left.custom-control-label {
+  font-size: 0.6em;
+  color: rgb(165, 167, 172) !important;
+}
+
+label.left.custom-control-label {
+  position: relative;
+  padding-right: 1.3rem;
+}
+
+label.left.custom-control-label::before,
+label.left.custom-control-label::after {
+  right: 0;
+  left: auto;
+}
+
+.remove {
+  color: rgb(194, 197, 202);
+}
+
+.remove:hover {
+  color: #dc3545;
+}
+
+.chosenComponent .custom-checkbox {
+  margin-top: -5px;
+}

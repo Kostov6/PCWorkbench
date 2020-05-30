@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./fontawesome-free-5.13.0-web/css/all.css">
+    <link rel="stylesheet" href="./css/profile.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+        <a class="navbar-brand" href="index.html">PC Workbench</a>
+        <ul class="navbar-nav">
+            <li class="nav-item  mx-2">
+                <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item mx-2">
+                <a class="nav-link" href="pre-built.html">Prebuilt PCs</a>
+            </li>
+            <li class="nav-item mx-2">
+                <a class="nav-link" href="build-PC.html">Build PC</a>
+            </li>
+            <li class="nav-item mx-2">
+                <a class="nav-link" href="components.html">Components</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item mx-2">
+                <a class="nav-link active" href="register.html"><i class="fas fa-user"></i> Profile</a>
+            </li>
+           
+            <li class="nav-itme mx-2">
+                <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i></span> Cart</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="row my-2">
+            <div class="col-lg-8 order-lg-2">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" data-target="#orders" data-toggle="tab" class="nav-link">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Edit</a>
+                    </li>
+                </ul>
+                <div class="tab-content py-4">
+                    <div class="tab-pane active" id="profile" style="margin-bottom: 350px;">
+                        <h5 class="mb-3"><i class="fas fa-user"></i> User Profile</h5>
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <b>Name:</b>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <span>John Smith</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <b>Email:</b>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <span>email@gmail.com</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <b>Username:</b>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <span>johnsmith</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <b>Country:</b>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <span>United Kingdom</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <b>City:</b>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <span>London</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <b>Address:</b>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <span>221B Baker St, Marylebone</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <h5 class="mt-2"><i class="far fa-clock"></i> Recent Activity</h5>
+                                <table class="table table-sm table-hover table-striped">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <strong>You</strong> ordered a product from category <strong>`Gaming
+                                                    Computers`</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>You</strong> ordered a product from category <strong>`Video
+                                                    Cards`</strong>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!--/row-->
+                    </div>
+                    <div class="tab-pane" id="orders">
+                        <div class="container px-1 px-md-4 pb-4 border-bottom mx-auto">
+                            <div class="card col-12">
+                                <div class="row d-flex justify-content-between px-3 top">
+                                    <div class="d-flex">
+                                        <h5>ORDER <span class="text-primary font-weight-bold">#Y34XDHR</span></h5>
+                                    </div>
+                                    <div class="d-flex flex-column text-sm-right">
+                                        <p class="mb-0">Expected Arrival <span>30/06/20</span></p>
+                                        <p>USPS <span class="font-weight-bold">234094567242423422898</span></p>
+                                    </div>
+                                </div> <!-- Add class 'active' to progress -->
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col-12">
+                                        <ul id="progressbar" class="text-center">
+                                            <li class="active step0"></li>
+                                            <li class="active step0"></li>
+                                            <li class="active step0"></li>
+                                            <li class="step0"></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="row flex-nowrap justify-content-between icons">
+                                    <div class="row d-flex icon-content"> <img class="icon"
+                                            src="https://i.imgur.com/9nnc9Et.png">
+                                        <div class="d-flex flex-column">
+                                            <p class="font-weight-bold">Order<br>Processed</p>
+                                        </div>
+                                    </div>
+                                    <div class="row d-flex icon-content"> <img class="icon"
+                                            src="https://i.imgur.com/u1AzR7w.png">
+                                        <div class="d-flex flex-column">
+                                            <p class="font-weight-bold">Order<br>Shipped</p>
+                                        </div>
+                                    </div>
+                                    <div class="row d-flex icon-content"> <img class="icon"
+                                            src="https://i.imgur.com/TkPm63y.png">
+                                        <div class="d-flex flex-column">
+                                            <p class="font-weight-bold">Order<br>on Route</p>
+                                        </div>
+                                    </div>
+                                    <div class="row d-flex icon-content"> <img class="icon"
+                                            src="https://i.imgur.com/HdsziHP.png">
+                                        <div class="d-flex flex-column">
+                                            <p class="font-weight-bold">Order<br>Arrived</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container px-1 px-md-4 py-4 border-bottom mx-auto">
+                            <div class="card">
+                                <div class="row d-flex justify-content-between px-3 top">
+                                    <div class="d-flex">
+                                        <h5>ORDER <span class="text-primary font-weight-bold">#MF42XB4</span></h5>
+                                    </div>
+                                    <div class="d-flex flex-column text-sm-right">
+                                        <p class="mb-0">Expected Arrival <span>01/12/19</span></p>
+                                        <p>USPS <span class="font-weight-bold">589108842972621391235</span></p>
+                                    </div>
+                                </div> <!-- Add class 'active' to progress -->
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col-12">
+                                        <ul id="progressbar" class="text-center">
+                                            <li class="active step0"></li>
+                                            <li class="active step0"></li>
+                                            <li class="active step0"></li>
+                                            <li class="active step0"></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="row flex-nowrap justify-content-between icons">
+                                    <div class="row d-flex icon-content"> <img class="icon"
+                                            src="https://i.imgur.com/9nnc9Et.png">
+                                        <div class="d-flex flex-column">
+                                            <p class="font-weight-bold">Order<br>Processed</p>
+                                        </div>
+                                    </div>
+                                    <div class="row d-flex icon-content"> <img class="icon"
+                                            src="https://i.imgur.com/u1AzR7w.png">
+                                        <div class="d-flex flex-column">
+                                            <p class="font-weight-bold">Order<br>Shipped</p>
+                                        </div>
+                                    </div>
+                                    <div class="row d-flex icon-content"> <img class="icon"
+                                            src="https://i.imgur.com/TkPm63y.png">
+                                        <div class="d-flex flex-column">
+                                            <p class="font-weight-bold">Order<br>on Route</p>
+                                        </div>
+                                    </div>
+                                    <div class="row d-flex icon-content"> <img class="icon"
+                                            src="https://i.imgur.com/HdsziHP.png">
+                                        <div class="d-flex flex-column">
+                                            <p class="font-weight-bold">Order<br>Arrived</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="edit">
+                        <form role="form">
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">First name</label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" type="text" value="John">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Last name</label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" type="text" value="Smith">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" type="email" value="email@gmail.com">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Address</label>
+                                <div class="col-lg-4">
+                                    <input class="form-control" type="text" value="" placeholder="Country">
+                                </div>
+                                <div class="col-lg-5">
+                                    <input class="form-control" type="text" value="" placeholder="City">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label"></label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" type="text" value="" placeholder="Street">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Time Zone</label>
+                                <div class="col-lg-9">
+                                    <select id="user_time_zone" class="form-control" size="0">
+                                        <option value="Hawaii">(GMT-10:00) Hawaii</option>
+                                        <option value="Alaska">(GMT-09:00) Alaska</option>
+                                        <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US
+                                            &amp; Canada)</option>
+                                        <option value="Arizona">(GMT-07:00) Arizona</option>
+                                        <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US
+                                            &amp; Canada)</option>
+                                        <option value="Central Time (US &amp; Canada)">(GMT-06:00) Central Time (US
+                                            &amp; Canada)</option>
+                                        <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US
+                                            &amp; Canada)</option>
+                                        <option value="Atlantic Time">(GMT-04:00) Atlantic Time</option>
+                                        <option value="Argentina Time">(GMT-03:00) Argentina Time</option>
+                                        <option value="Azores Time">(GMT-02:00) Azores Time</option>
+                                        <option value="West Africa Time">(GMT-01:00) West Africa Time</option>
+                                        <option value="Greenwich Mean Time">(GMT+00:00) Greenwich Mean Time</option>
+                                        <option value="Central European Time">(GMT+01:00) Central European Time</option>
+                                        <option value="Eastern European Time" selected="selected">(GMT+02:00) Eastern
+                                            European Time</option>
+                                        <option value="Moscow Time">(GMT+03:00) Moscow Time</option>
+                                        <option value="Armenia Time">(GMT+04:00) Armenia Time</option>
+                                        <option value="Pakistan Standard Time">(GMT+05:00) Pakistan Standard Time
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Username</label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" type="text" value="johnsmith">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Password</label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" type="password" value="11111122333">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" type="password" value="11111122333">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label"></label>
+                                <div class="col-lg-9">
+                                    <input type="reset" class="btn btn-secondary" value="Cancel">
+                                    <input type="button" class="btn btn-dark" value="Save Changes">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 order-lg-1 text-center">
+                <img src="./images/blank-profile.png" class="mx-auto img-fluid rounded d-block w-75" alt="avatar">
+                <h6 class="mt-2">Upload a different photo</h6>
+                <label class="btn btn-outline-dark w-50 mt-1">
+                    Choose file<input type="file" hidden>
+                </label>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // prevent navigation
+        document.addEventListener("DOMContentLoaded", function () {
+            var links = document.getElementsByTagName("A");
+            for (var i = 0; i < links.length; i++) {
+                links[i].addEventListener("click", function (e) {
+                    var href = this.getAttribute("href")
+
+                    if (!href) {
+                        return
+                    }
+
+                    if (href === '#') {
+                        // hash only ('#')
+                        e.preventDefault()
+                    }
+                })
+            }
+        }, null);
+    </script>
+    
+    <footer class="page-footer font-small bg-dark text-white-50 pt-1">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-8 mt-3">
+                    <h5 class="text-uppercase mb-3">PC Workbench</h5>
+                    <p>Our aim is to help computer enthusiasts build their dream computer. We achieve our goal by
+                        presenting a wide variaty of components for the customer to choose from.</p>
+                    <p>This site also allows our users to buy completed builts and separate components.</p>
+                </div>
+
+                <div class="col-4 mt-3">
+                    <h5 class="text-uppercase">Customer support</h5>
+                    <ul class="list-unstyled">
+                        <li>
+                            E-mail: suppport@PCWorkBench.com
+                        </li>
+                        <li>
+                            Live line: 088888888
+                        </li>
+                        <li>
+                            Live chat: link
+                        </li>
+                        <li>
+                            Address: adress
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

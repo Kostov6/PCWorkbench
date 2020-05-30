@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" href="./fontawesome-free-5.13.0-web/css/all.css">
+</head>
+
+<body class="bg-light">
+
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+    <a class="navbar-brand" href="index.html">PC Workbench</a>
+    <ul class="navbar-nav">
+        <li class="nav-item  mx-2">
+            <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item mx-2">
+            <a class="nav-link" href="pre-built.html">Prebuilt PCs</a>
+        </li>
+        <li class="nav-item mx-2">
+            <a class="nav-link" href="build-PC.html">Build PC</a>
+        </li>
+        <li class="nav-item mx-2">
+            <a class="nav-link" href="components.html">Components</a>
+        </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item mx-2">
+            <a class="nav-link" href="register.html"><i class="fas fa-user"></i> Sign Up</a>
+        </li>
+        <li class="nav-itme mx-2">
+            <a class="nav-link" href="login.html"><i class="fas fa-sign-in-alt fa-lg"></i></span> Login</a>
+        </li>
+        <li class="nav-itme active mx-2">
+            <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i></span> Cart</a>
+        </li>
+    </ul>
+</nav>
+
+  <div class="container">
+    <div class="py-5 text-center">
+      <h2>Checkout </h2>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 order-md-2 mb-4">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-muted">Your cart</span>
+          <span class="badge badge-secondary badge-pill">3</span>
+        </h4>
+        <ul class="list-group mb-3">
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0">Asus TUF GAMING X570-PLUS (WI-FI) ATX AM4 Motherboard</h6>
+              <small class="text-muted font-italic">Category: Motherboards</small>
+            </div>
+            <span class="text-muted">$189.99</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0">AMD Ryzen 9 3900X 3.8 GHz 12-Core Processor</h6>
+              <small class="text-muted font-italic">Category: Processors</small>
+            </div>
+            <span class="text-muted">$409.99</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0">Gigabyte GeForce RTX 2080 Ti 11 GB AORUS XTREME WATERFORCE</h6>
+              <small class="text-muted font-italic">Category: Video cards</small>
+            </div>
+            <span class="text-muted">$2499.00</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0">Shipping</h6>
+            </div>
+            <span class="text-muted">$10.00</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Total (USD)</span>
+            <strong>$3108.98</strong>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-8 order-md-1">
+        <h4 class="mb-3">Billing address</h4>
+        <form class="needs-validation" novalidate="">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="firstName">First name</label>
+              <input type="text" class="form-control" id="firstName" placeholder="" value="" required=""
+                style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+              <div class="invalid-feedback">
+                Valid first name is required.
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="lastName">Last name</label>
+              <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
+              <div class="invalid-feedback">
+                Valid last name is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="you@example.com">
+            <div class="invalid-feedback">
+              Please enter a valid email address for shipping updates.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="address">Address</label>
+            <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="">
+            <div class="invalid-feedback">
+              Please enter your shipping address.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
+            <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+          </div>
+
+          <div class="row">
+            <div class="col-md-5 mb-3">
+              <label for="country">Country</label>
+              <select class="custom-select d-block w-100" id="country" required="">
+                <option value="">Choose...</option>
+                <option>Bulgaria</option>
+              </select>
+              <div class="invalid-feedback">
+                Please select a valid country.
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="city">City</label>
+              <select class="custom-select d-block w-100" id="City" required="">
+                <option value="">Choose...</option>
+                <option>Sofia</option>
+                <option>Plovdiv</option>
+              </select>
+              <div class="invalid-feedback">
+                Please provide a valid town.
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="zip">Zip</label>
+              <input type="text" class="form-control" id="zip" placeholder="" required="">
+              <div class="invalid-feedback">
+                Zip code required.
+              </div>
+            </div>
+          </div>
+          <hr class="mb-4">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="same-address">
+            <label class="custom-control-label" for="same-address">Shipping address is the same as my billing
+              address</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="save-info">
+            <label class="custom-control-label" for="save-info">Save this information for next time</label>
+          </div>
+          <hr class="mb-4">
+
+          <h4 class="mb-3">Payment</h4>
+
+          <div class="d-block my-3">
+            <div class="custom-control custom-radio">
+              <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked="" required="">
+              <label class="custom-control-label" for="credit">Credit card</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required="">
+              <label class="custom-control-label" for="debit">Debit card</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input bg-dark" required="">
+              <label class="custom-control-label" for="paypal">Paypal</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="cc-name">Name on card</label>
+              <input type="text" class="form-control" id="cc-name" placeholder="" required="">
+              <small class="text-muted">Full name as displayed on card</small>
+              <div class="invalid-feedback">
+                Name on card is required
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="cc-number">Credit card number</label>
+              <input type="text" class="form-control" id="cc-number" placeholder="" required="">
+              <div class="invalid-feedback">
+                Credit card number is required
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 mb-3">
+              <label for="cc-expiration">Expiration</label>
+              <input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
+              <div class="invalid-feedback">
+                Expiration date required
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="cc-expiration">CVV</label>
+              <input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
+              <div class="invalid-feedback">
+                Security code required
+              </div>
+            </div>
+          </div>
+          <hr class="mb-4">
+          <a class="btn btn-dark btn-lg btn-block mb-4" href="profile.html" type="submit">Continue to checkout</a>
+        </form>
+      </div>
+    </div>
+  </div>
+  <footer class="page-footer font-small bg-dark text-white-50 pt-1">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-8 mt-3">
+                <h5 class="text-uppercase mb-3">PC Workbench</h5>
+                <p>Our aim is to help computer enthusiasts build their dream computer. We achieve our goal by
+                    presenting a wide variaty of components for the customer to choose from.</p>
+                <p>This site also allows our users to buy completed builts and separate components.</p>
+            </div>
+
+            <div class="col-4 mt-3">
+                <h5 class="text-uppercase">Customer support</h5>
+                <ul class="list-unstyled">
+                    <li>
+                        E-mail: suppport@PCWorkBench.com
+                    </li>
+                    <li>
+                        Live line: 088888888
+                    </li>
+                    <li>
+                        Live chat: link
+                    </li>
+                    <li>
+                        Address: adress
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+
+</html>
