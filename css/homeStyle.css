@@ -1,11 +1,16 @@
 .mySlides {
   display: none;
+  width: 100%;
+}
+
+.mySlides a, img {
+  width: 100%;
 }
 
 /* Slideshow container */
 .slideshow-container {
-  height: 1.1em;
   position: relative;
+  margin: auto;
 }
 
 /* Next & previous buttons */
@@ -27,7 +32,7 @@
 
 /* Position the "next button" to the right */
 .next {
-  right: 15px;
+  right: 0;
   border-radius: 3px 0 0 3px;
 }
 

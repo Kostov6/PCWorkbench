@@ -2,13 +2,15 @@
 <html>
 
 <head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./fontawesome-free-5.13.0-web/css/all.css">
     <link rel="stylesheet" href="./css/profile.css">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
         <a class="navbar-brand" href="index.html">PC Workbench</a>
         <ul class="navbar-nav">
             <li class="nav-item  mx-2">
@@ -28,7 +30,9 @@
             <li class="nav-item mx-2">
                 <a class="nav-link active" href="register.html"><i class="fas fa-user"></i> Profile</a>
             </li>
-           
+            <li class="nav-itme mx-2">
+                <a class="nav-link" href="index.html"><i class="fas fa-sign-out-alt fa-lg"></i></span> Sign Out</a>
+            </li>
             <li class="nav-itme mx-2">
                 <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i></span> Cart</a>
             </li>
@@ -278,9 +282,9 @@
                                         <option value="Argentina Time">(GMT-03:00) Argentina Time</option>
                                         <option value="Azores Time">(GMT-02:00) Azores Time</option>
                                         <option value="West Africa Time">(GMT-01:00) West Africa Time</option>
-                                        <option value="Greenwich Mean Time">(GMT+00:00) Greenwich Mean Time</option>
+                                        <option value="Greenwich Mean Time" selected="selected">(GMT+00:00) Greenwich Mean Time</option>
                                         <option value="Central European Time">(GMT+01:00) Central European Time</option>
-                                        <option value="Eastern European Time" selected="selected">(GMT+02:00) Eastern
+                                        <option value="Eastern European Time">(GMT+02:00) Eastern
                                             European Time</option>
                                         <option value="Moscow Time">(GMT+03:00) Moscow Time</option>
                                         <option value="Armenia Time">(GMT+04:00) Armenia Time</option>
@@ -314,6 +318,7 @@
                                     <input type="button" class="btn btn-dark" value="Save Changes">
                                 </div>
                             </div>
+                            <div style="height: 143px;"></div>
                         </form>
                     </div>
                 </div>
@@ -349,7 +354,7 @@
             }
         }, null);
     </script>
-    
+
     <footer class="page-footer font-small bg-dark text-white-50 pt-1">
         <div class="container text-center">
             <div class="row">
@@ -363,7 +368,7 @@
                 <div class="col-4 mt-3">
                     <h5 class="text-uppercase">Customer support</h5>
                     <ul class="list-unstyled">
-                        <li>
+                        <li class="text-break">
                             E-mail: suppport@PCWorkBench.com
                         </li>
                         <li>

@@ -1,224 +1,164 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="./css/bootstrap.min.css" />
-    <link rel="stylesheet" href="./fontawesome-free-5.13.0-web/css/all.css" />
-  </head>
 
-  <body>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
-      <a class="navbar-brand" href="index.html">PC Workbench</a>
-      <ul class="navbar-nav">
-          <li class="nav-item  mx-2">
-              <a class="nav-link" href="index.html">Home</a>
-          </li>
-          <li class="nav-item mx-2">
-              <a class="nav-link" href="pre-built.html">Prebuilt PCs</a>
-          </li>
-          <li class="nav-item mx-2">
-              <a class="nav-link" href="build-PC.html">Build PC</a>
-          </li>
-          <li class="nav-item mx-2">
-              <a class="nav-link" href="components.html">Components</a>
-          </li>
-      </ul>
-      <ul class="navbar-nav ml-auto">
-          <li class="nav-item mx-2">
-              <a class="nav-link" href="register.html"><i class="fas fa-user"></i> Sign Up</a>
-          </li>
-          <li class="nav-itme mx-2">
-              <a class="nav-link" href="login.html"><i class="fas fa-sign-in-alt fa-lg"></i></span> Login</a>
-          </li>
-          <li class="nav-itme  active mx-2">
-              <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i></span> Cart</a>
-          </li>
-      </ul>
+<head>
+  <meta charset="UTF-8">
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" href="./css/bootstrap.min.css" />
+  <link rel="stylesheet" href="./fontawesome-free-5.13.0-web/css/all.css" />
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
+    <a class="navbar-brand" href="index.html">PC Workbench</a>
+    <ul class="navbar-nav">
+      <li class="nav-item  mx-2">
+        <a class="nav-link" href="index.html">Home</a>
+      </li>
+      <li class="nav-item mx-2">
+        <a class="nav-link" href="pre-built.html">Prebuilt PCs</a>
+      </li>
+      <li class="nav-item mx-2">
+        <a class="nav-link" href="build-PC.html">Build PC</a>
+      </li>
+      <li class="nav-item mx-2">
+        <a class="nav-link" href="components.html">Components</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item mx-2">
+        <a class="nav-link" href="register.html"><i class="fas fa-user"></i> Sign Up</a>
+      </li>
+      <li class="nav-itme mx-2">
+        <a class="nav-link" href="login.html"><i class="fas fa-sign-in-alt fa-lg"></i></span> Sign In</a>
+      </li>
+      <li class="nav-itme  active mx-2">
+        <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i></span> Cart</a>
+      </li>
+    </ul>
   </nav>
 
-    <div class="px-4 px-lg-0">
-      <div class="pb-5">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12 my-5 bg-white rounded">
-              <div class="table-responsive">
-                <table class="table">
-                  <thead>
-                    <tr class="bg-light rounded">
-                      <th scope="col" class="border-0 bg-light rounded-left">
-                        <div class="p-2 px-3 text-uppercase">Product</div>
-                      </th>
-                      <th scope="col" class="border-0 bg-light">
-                        <div class="py-2 text-uppercase">Price</div>
-                      </th>
-                      <th scope="col" class="border-0 bg-light">
-                        <div class="py-2 text-uppercase">Quantity</div>
-                      </th>
-                      <th scope="col" class="border-0 bg-light rounded-right">
-                        <div class="py-2 text-uppercase mr-1">Remove</div>
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row" class="border-0">
-                        <div class="p-2">
-                          <img
-                            src="images/mb.jpg"
-                            alt=""
-                            width="95"
-                            class="img-fluid rounded shadow-sm"
-                          />
-                          <div class="ml-3 d-inline-block align-middle">
-                            <h5 class="mb-0">
-                              <a
-                                href="#"
-                                class="text-dark d-inline-block align-middle"
-                                >Asus TUF GAMING X570-PLUS (WI-FI) ATX AM4
-                                Motherboard</a
-                              >
-                            </h5>
-                            <span
-                              class="text-muted font-weight-normal font-italic d-block"
-                              >Category: Motherboards</span
-                            >
-                          </div>
+  <div class="px-4 px-lg-0">
+    <div class="pb-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 my-5 bg-white rounded">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr class="bg-light rounded">
+                    <th scope="col" class="border-0 bg-light rounded-left">
+                      <div class="p-2 px-3 text-uppercase">Product</div>
+                    </th>
+                    <th scope="col" class="border-0 bg-light">
+                      <div class="py-2 text-uppercase">Price</div>
+                    </th>
+                    <th scope="col" class="border-0 bg-light">
+                      <div class="py-2 text-uppercase">Quantity</div>
+                    </th>
+                    <th scope="col" class="border-0 bg-light rounded-right">
+                      <div class="py-2 text-uppercase mr-1">Remove</div>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row" class="border-0">
+                      <div class="p-2">
+                        <img src="images/mb.jpg" alt="" width="95" class="img-fluid rounded shadow-sm" />
+                        <div class="ml-3 d-inline-block align-middle">
+                          <h5 class="mb-0">
+                            <a href="#" class="text-dark d-inline-block align-middle">Asus TUF GAMING X570-PLUS (WI-FI)
+                              ATX AM4
+                              Motherboard</a>
+                          </h5>
+                          <span class="text-muted font-weight-normal font-italic d-block">Category: Motherboards</span>
                         </div>
-                      </th>
-                      <td class="border-0 align-middle">
-                        <strong>$189.99</strong>
-                      </td>
-                      <td class="border-0 align-middle" style="width: 75px;">
-                        <input class="form-control" type="number" value="1" />
-                      </td>
+                      </div>
+                    </th>
+                    <td class="border-0 align-middle">
+                      <strong>$189.99</strong>
+                    </td>
+                    <td class="border-0 align-middle" style="width: 75px;">
+                      <input class="form-control" type="number" value="1" />
+                    </td>
 
-                      <td class="border-0 align-middle">
-                        <a href="#" class="text-dark ml-4"
-                          ><i class="fa fa-trash"></i
-                        ></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">
-                        <div class="p-2">
-                          <img
-                            src="images/cpu.jpg"
-                            alt=""
-                            width="95"
-                            class="img-fluid rounded shadow-sm"
-                          />
-                          <div class="ml-3 d-inline-block align-middle">
-                            <h5 class="mb-0">
-                              <a href="#" class="text-dark d-inline-block"
-                                >AMD Ryzen 9 3900X 3.8 GHz 12-Core Processor</a
-                              >
-                            </h5>
-                            <span
-                              class="text-muted font-weight-normal font-italic"
-                              >Category: Processors</span
-                            >
-                          </div>
+                    <td class="border-0 align-middle">
+                      <a href="#" class="text-dark ml-4"><i class="fa fa-trash"></i></a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <div class="p-2">
+                        <img src="images/cpu.jpg" alt="" width="95" class="img-fluid rounded shadow-sm" />
+                        <div class="ml-3 d-inline-block align-middle">
+                          <h5 class="mb-0">
+                            <a href="#" class="text-dark d-inline-block">AMD Ryzen 9 3900X 3.8 GHz 12-Core Processor</a>
+                          </h5>
+                          <span class="text-muted font-weight-normal font-italic">Category: Processors</span>
                         </div>
-                      </th>
-                      <td class="align-middle"><strong>$409.99</strong></td>
-                      <td class="align-middle" style="width: 75px;">
-                        <input class="form-control" type="number" value="1" />
-                      </td>
-                      <td class="align-middle">
-                        <a href="#" class="text-dark ml-4"
-                          ><i class="fa fa-trash"></i
-                        ></a>
-                      </td>
-                    </tr>
-                    <tr class="border-bottom">
-                      <th scope="row">
-                        <div class="p-2">
-                          <img
-                            src="images/gpu.jpg"
-                            alt=""
-                            width="95"
-                            class="img-fluid rounded shadow-sm"
-                          />
-                          <div class="ml-3 d-inline-block align-middle">
-                            <h5 class="mb-0">
-                              <a href="#" class="text-dark d-inline-block"
-                                >Gigabyte GeForce RTX 2080 Ti 11 GB AORUS XTREME
-                                WATERFORCE</a
-                              >
-                            </h5>
-                            <span
-                              class="text-muted font-weight-normal font-italic"
-                              >Category: Video cards</span
-                            >
-                          </div>
+                      </div>
+                    </th>
+                    <td class="align-middle"><strong>$409.99</strong></td>
+                    <td class="align-middle" style="width: 75px;">
+                      <input class="form-control" type="number" value="1" />
+                    </td>
+                    <td class="align-middle">
+                      <a href="#" class="text-dark ml-4"><i class="fa fa-trash"></i></a>
+                    </td>
+                  </tr>
+                  <tr class="border-bottom">
+                    <th scope="row">
+                      <div class="p-2">
+                        <img src="images/gpu.jpg" alt="" width="95" class="img-fluid rounded shadow-sm" />
+                        <div class="ml-3 d-inline-block align-middle">
+                          <h5 class="mb-0">
+                            <a href="#" class="text-dark d-inline-block">Gigabyte GeForce RTX 2080 Ti 11 GB AORUS XTREME
+                              WATERFORCE</a>
+                          </h5>
+                          <span class="text-muted font-weight-normal font-italic">Category: Video cards</span>
                         </div>
-                      </th>
+                      </div>
+                    </th>
 
-                      <td class="align-middle"><strong>$2499.00</strong></td>
-                      <td class="align-middle" style="width: 75px;">
-                        <input class="form-control" type="number" value="1" />
-                      </td>
-                      <td class="align-middle">
-                        <a href="#" class="text-dark ml-4"
-                          ><i class="fa fa-trash"></i
-                        ></a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="d-flex">
-                <div class="col-lg-8 m-auto">
-                  <div
-                    class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold"
-                  >
-                    Order summary
+                    <td class="align-middle"><strong>$2499.00</strong></td>
+                    <td class="align-middle" style="width: 75px;">
+                      <input class="form-control" type="number" value="1" />
+                    </td>
+                    <td class="align-middle">
+                      <a href="#" class="text-dark ml-4"><i class="fa fa-trash"></i></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="d-flex">
+              <div class="col-lg-8 m-auto">
+                <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">
+                  Order summary
+                </div>
+                <div class="p-4">
+                  <ul class="list-unstyled mb-4">
+                    <li class="d-flex justify-content-between py-3 border-bottom">
+                      <strong class="text-muted">Order Subtotal </strong><strong>$3098.98</strong>
+                    </li>
+                    <li class="d-flex justify-content-between py-3 border-bottom">
+                      <strong class="text-muted">Shipping and handling</strong><strong>$10.00</strong>
+                    </li>
+                    <li class="d-flex justify-content-between py-3 border-bottom" id="built"
+                      style="display: none !important;">
+                      <strong class="text-muted">Build my PC</strong><strong>$25.00</strong>
+                    </li>
+                    <li class="d-flex justify-content-between py-3 border-bottom">
+                      <strong class="text-muted">Total</strong>
+                      <h5 class="font-weight-bold" id="total">$3108.98</h5>
+                    </li>
+                  </ul>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="build" onchange="change(this)" />
+                    <label class="custom-control-label mb-4 ml-2" for="build">Build my PC ($25)</label>
                   </div>
-                  <div class="p-4">
-                    <ul class="list-unstyled mb-4">
-                      <li
-                        class="d-flex justify-content-between py-3 border-bottom"
-                      >
-                        <strong class="text-muted">Order Subtotal </strong
-                        ><strong>$3098.98</strong>
-                      </li>
-                      <li
-                        class="d-flex justify-content-between py-3 border-bottom"
-                      >
-                        <strong class="text-muted">Shipping and handling</strong
-                        ><strong>$10.00</strong>
-                      </li>
-                      <li
-                        class="d-flex justify-content-between py-3 border-bottom"
-                        id="built"
-                        style="display: none !important;"
-                      >
-                        <strong class="text-muted">Build my PC</strong
-                        ><strong>$25.00</strong>
-                      </li>
-                      <li
-                        class="d-flex justify-content-between py-3 border-bottom"
-                      >
-                        <strong class="text-muted">Total</strong>
-                        <h5 class="font-weight-bold" id="total">$3108.98</h5>
-                      </li>
-                    </ul>
-                    <div class="custom-control custom-checkbox">
-                      <input
-                        type="checkbox"
-                        class="custom-control-input"
-                        id="build"
-                        onchange="change(this)"
-                      />
-                      <label class="custom-control-label mb-4 ml-2" for="build"
-                        >Build my PC ($25)</label
-                      >
-                    </div>
-                    <a
-                      href="checkout.html"
-                      class="btn btn-dark rounded-pill py-2 btn-block"
-                      >Proceed to checkout</a
-                    >
-                  </div>
+                  <a href="checkout.html" class="btn btn-dark rounded-pill py-2 btn-block">Proceed to checkout</a>
                 </div>
               </div>
             </div>
@@ -226,47 +166,49 @@
         </div>
       </div>
     </div>
-    <footer class="page-footer font-small bg-dark text-white-50 pt-1">
-      <div class="container text-center">
-          <div class="row">
-              <div class="col-8 mt-3">
-                  <h5 class="text-uppercase mb-3">PC Workbench</h5>
-                  <p>Our aim is to help computer enthusiasts build their dream computer. We achieve our goal by
-                      presenting a wide variaty of components for the customer to choose from.</p>
-                  <p>This site also allows our users to buy completed builts and separate components.</p>
-              </div>
+  </div>
+  <footer class="page-footer font-small bg-dark text-white-50 pt-1">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-8 mt-3">
+          <h5 class="text-uppercase mb-3">PC Workbench</h5>
+          <p>Our aim is to help computer enthusiasts build their dream computer. We achieve our goal by
+            presenting a wide variaty of components for the customer to choose from.</p>
+          <p>This site also allows our users to buy completed builts and separate components.</p>
+        </div>
 
-              <div class="col-4 mt-3">
-                  <h5 class="text-uppercase">Customer support</h5>
-                  <ul class="list-unstyled">
-                      <li>
-                          E-mail: suppport@PCWorkBench.com
-                      </li>
-                      <li>
-                          Live line: 088888888
-                      </li>
-                      <li>
-                          Live chat: link
-                      </li>
-                      <li>
-                          Address: adress
-                      </li>
-                  </ul>
-              </div>
-          </div>
+        <div class="col-4 mt-3">
+          <h5 class="text-uppercase">Customer support</h5>
+          <ul class="list-unstyled">
+            <li class="text-break">
+              E-mail: suppport@PCWorkBench.com
+            </li>
+            <li>
+              Live line: 088888888
+            </li>
+            <li>
+              Live chat: link
+            </li>
+            <li>
+              Address: adress
+            </li>
+          </ul>
+        </div>
       </div>
+    </div>
   </footer>
-  </body>
-  <script>
-    function change(event) {
-      if (event.checked) {
-        document.getElementById("built").style.display = "block";
-        document.getElementById("total").innerText = "$3133.98";
-      } else {
-        document.getElementById("built").style.cssText =
-          "display:none !important";
-        document.getElementById("total").innerText = "$3108.98";
-      }
+</body>
+<script>
+  function change(event) {
+    if (event.checked) {
+      document.getElementById("built").style.display = "block";
+      document.getElementById("total").innerText = "$3133.98";
+    } else {
+      document.getElementById("built").style.cssText =
+        "display:none !important";
+      document.getElementById("total").innerText = "$3108.98";
     }
-  </script>
+  }
+</script>
+
 </html>

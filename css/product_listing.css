@@ -1,0 +1,23 @@
+.filtered-inclusive .filter-item,
+.filtered-exclusive .filter-item,
+.filter-no-item {
+    display: none
+}
+
+/* filtered-inclusive/filtered-exclusive class applied via js */
+.filtered-inclusive .filter-item.selected,
+.filtered-exclusive .filter-item:not(.selected) {
+    display: -webkit-flexbox;
+    display: -ms-flexbox;
+    display: flex
+}
+
+/* selected class applied via js */
+
+.card .bottom-wrap {
+    z-index: 5000;
+}
+
+.filter-categories {
+    margin-bottom: 200px;
+}

@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Components</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./fontawesome-free-5.13.0-web/css/all.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
@@ -18,7 +17,7 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
         <a class="navbar-brand" href="index.html">PC Workbench</a>
         <ul class="navbar-nav">
             <li class="nav-item mx-2">
@@ -39,7 +38,7 @@
                 <a class="nav-link" href="register.html"><i class="fas fa-user"></i> Sign Up</a>
             </li>
             <li class="nav-itme mx-2">
-                <a class="nav-link" href="login.html"><i class="fas fa-sign-in-alt fa-lg"></i></span> Login</a>
+                <a class="nav-link" href="login.html"><i class="fas fa-sign-in-alt fa-lg"></i></span> Sign In</a>
             </li>
             <li class="nav-itme mx-2">
                 <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i></span> Cart</a>
@@ -103,6 +102,8 @@
                     <input type="checkbox" class="custom-control-input" id="fan" onchange="filterIt(event)">
                     <label class="custom-control-label" for="fan">CPU Cooler</label>
                 </div>
+                <div class="custom-control custom-checkbox" style="height: 200px !important">
+                </div>
             </div>
         </div>
         <div>
@@ -160,7 +161,7 @@
                 <div class="col-4 mt-3">
                     <h5 class="text-uppercase">Customer support</h5>
                     <ul class="list-unstyled">
-                        <li>
+                        <li class="text-break">
                             E-mail: suppport@PCWorkBench.com
                         </li>
                         <li>
