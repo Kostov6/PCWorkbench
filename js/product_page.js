@@ -75,6 +75,9 @@ if (pcId !== null && pcId !== "") {
     setElement("expansion_slots", spec.expansion_slots);
     setElement("ports", spec.ports);
     setElement("video_connectivity", spec.video_connectivity);
+} else {
+    //redirect to page not found
+
 }
 
 function setElement(elementId, data) {
