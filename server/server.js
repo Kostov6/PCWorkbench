@@ -4,31 +4,43 @@ const publicDir = `${__dirname}/..`;
 const app = express();
 const port = 3000;
 
-var mysql = require('mysql');
-
-var connection = mysql.createConnection({
+const mysql = require('mysql');
+const { resolve } = require('path');
+const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
   database: 'pc_workbench'
 })
 
-connection.connect();
-
-connection.query('SELECT * FROM products', function (err, rows, fields) {
-    if (err) throw err
-  
-    console.log('The solution is: ', rows[0].photo)
-  })
-  
-connection.end();
-
-
-
 app.use(express.static(publicDir));
 
+app.get('/getPc/:id', (req, res) => {
+  let id = req.params['id'];
 
+  makeQuery('SELECT * FROM products WHERE id = ? AND type = "pc"', id).then((rows) => {
+
+    let obj = rows[0];
+    obj.specifications_details = JSON.parse(obj.specifications_details);
+    obj.specifications_overview = JSON.parse(obj.specifications_overview);
+
+    res.send(obj);
+  });
+})
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Example app listening at http://localhost:${port}`);
 });
+
+function makeQuery(query, ...args) {
+  return new Promise((resolve, reject) => {
+    connection.connect();
+    connection.query(query, args, function (err, rows) {
+      if (err) reject(err);
+      
+      resolve(rows);
+    }); 
+
+    connection.end();
+  });
+}
