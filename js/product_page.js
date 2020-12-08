@@ -31,7 +31,7 @@ const jsonData = {
     }
 };
 
-/*
+
 function getParameterByName(name, url = window.location.href) {
     name = name.replace(/[\[\]]/g, '\\$&');
     var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
@@ -40,41 +40,47 @@ function getParameterByName(name, url = window.location.href) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
-*/
+
 function getPC(pcId) {
-    return jsonData;
+    return fetch("http://localhost:3000/getProduct/" + pcId, {});
 }
 
 
 
-const pcId = 2; //getParameterByName("pcId");
+const pcId = getParameterByName("id");
 if (pcId !== null && pcId !== "") {
-    const pcInfo = getPC(pcId);
-    setElement("fullTitle", pcInfo.fullTitle);
-    setElement("price", pcInfo.price);
-    setElement("overview", pcInfo.overview);
-    //set image
-    document.getElementById("pcImage").setAttribute("src", pcInfo.pcImage)
-    //add specification overview
-    const specificationsOverview = document.getElementById("specificationsOverview")
-    for (overviewText of pcInfo.specificationsOverview) {
-        const overviewEl = document.createElement("li");
-        overviewEl.innerHTML = overviewText;
-        specificationsOverview.appendChild(overviewEl);
-    }
+    getPC(pcId)
+        .then(response => response.json())
+        .then(data => {
+            const pcInfo = data;
+            console.log(data);
+            setElement("fullTitle", pcInfo.title);
+            setElement("price", pcInfo.price);
+            setElement("overview", pcInfo.description_long);
+            //set image
+            document.getElementById("pcImage").setAttribute("src", pcInfo.photo)
+            //add specification overview
+            const specificationsOverview = document.getElementById("specificationsOverview")
+            for (overviewText of pcInfo.specifications_overview) {
+                const overviewEl = document.createElement("li");
+                overviewEl.innerHTML = overviewText;
+                specificationsOverview.appendChild(overviewEl);
+            }
 
-    const spec = pcInfo.specificationsDetail;
-    setElement("processor", spec.processor);
-    setElement("chipset", spec.chipset);
-    setElement("memory", spec.memory);
-    setElement("hard_drives", spec.hard_drives);
-    setElement("video_graphics", spec.video_graphics);
-    setElement("power_supply", spec.power_supply);
-    setElement("network_connectivity", spec.network_connectivity);
-    setElement("chassis_fan", spec.chassis_fan);
-    setElement("expansion_slots", spec.expansion_slots);
-    setElement("ports", spec.ports);
-    setElement("video_connectivity", spec.video_connectivity);
+            const spec = pcInfo.specifications_details;
+            setElement("processor", spec.processor.title);
+            setElement("chipset", spec.chipset.title);
+            setElement("memory", spec.memory.title);
+            setElement("hard_drives", spec.hard_drives.title);
+            setElement("video_graphics", spec.video_graphics.title);
+            setElement("power_supply", spec.power_supply.title);
+            setElement("network_connectivity", spec.network_connectivity);
+            setElement("chassis_fan", spec.chassis_fan);
+            setElement("expansion_slots", spec.expansion_slots);
+            setElement("ports", spec.ports);
+            setElement("video_connectivity", spec.video_connectivity);
+
+        })
 } else {
     //redirect to page not found
 
