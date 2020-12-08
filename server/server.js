@@ -1,4 +1,5 @@
 const express = require('express');
+const passwordHash = require('password-hash');
 const publicDir = `${__dirname}/..`;
 
 const app = express();
@@ -14,6 +15,48 @@ const connection = mysql.createConnection({
 })
 
 app.use(express.static(publicDir));
+
+app.post('/Register', (req, res) => {
+  let username = req.query.username;
+  let password = req.query.password;
+  let password2 = req.query.password2;
+  if (username.lnegth < 6 || username.length > 32)
+    return res.status(400).send({
+      message: 'Username must be between 6 and 32 symbols!'
+    });
+  if (password.length < 6 || password.length > 32)
+    return res.status(400).send({
+      message: 'Password must be between 6 and 32 symbols!'
+    });
+  if (password !== password2)
+    return res.status(400).send({
+      message: 'Both passwords must be the same!'
+    });
+  makeQuery('SELECT * FROM user WHERE username = ?', username).then((rows) => {
+
+    let obj = rows[0];
+    if (obj)
+      return res.status(400).send({
+        message: 'Username is taken!'
+      });
+  }).catch(() => {
+    return res.status(400).send({
+      message: 'Error in DB!'
+    });
+  });
+  password = passwordHash.generate(password);
+  makeQuery('INSERT INTO `user` (`username`, `password_hash`) VALUES (?, ?);', username, password).then(() => {
+
+    return res.status(200).send({
+      message: 'Registration successful!'
+    });
+  }).catch(() => {
+    return res.status(400).send({
+      message: 'Error in DB!'
+    });
+  });
+
+})
 
 app.get('/getProduct', (req, res) => {
   let id = req.query.id;
@@ -37,7 +80,7 @@ app.get('/getProductsByType', (req, res) => {
       obj.specifications_details = JSON.parse(obj.specifications_details);
       obj.specifications_overview = JSON.parse(obj.specifications_overview);
     }
-    
+
     res.send(rows);
   });
 })
@@ -50,8 +93,8 @@ function makeQuery(query, ...args) {
   return new Promise((resolve, reject) => {
     connection.query(query, args, function (err, rows) {
       if (err) reject(err);
-      
+
       resolve(rows);
-    }); 
+    });
   });
 }
