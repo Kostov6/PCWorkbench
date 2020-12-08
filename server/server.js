@@ -16,7 +16,7 @@ const connection = mysql.createConnection({
 
 app.use(express.static(publicDir));
 
-app.post('/Register', (req, res) => {
+app.post('/register', (req, res) => {
   let username = req.query.username;
   let password = req.query.password;
   let password2 = req.query.password2;
@@ -39,20 +39,16 @@ app.post('/Register', (req, res) => {
       return res.status(400).send({
         message: 'Username is taken!'
       });
-  }).catch(() => {
-    return res.status(400).send({
-      message: 'Error in DB!'
-    });
   });
   password = passwordHash.generate(password);
-  makeQuery('INSERT INTO `user` (`username`, `password_hash`) VALUES (?, ?);', username, password).then(() => {
+  makeQuery('INSERT INTO `user` (`username`, `password_hash`) VALUES ("?", "?");', username, password).then(() => {
 
     return res.status(200).send({
       message: 'Registration successful!'
     });
-  }).catch(() => {
+  }).catch((e) => {
     return res.status(400).send({
-      message: 'Error in DB!'
+      message: e
     });
   });
 
