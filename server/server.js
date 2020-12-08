@@ -15,16 +15,30 @@ const connection = mysql.createConnection({
 
 app.use(express.static(publicDir));
 
-app.get('/getPc/:id', (req, res) => {
+app.get('/getProduct/:id', (req, res) => {
   let id = req.params['id'];
 
-  makeQuery('SELECT * FROM products WHERE id = ? AND type = "pc"', id).then((rows) => {
+  makeQuery('SELECT * FROM products WHERE id = ?', id).then((rows) => {
 
     let obj = rows[0];
     obj.specifications_details = JSON.parse(obj.specifications_details);
     obj.specifications_overview = JSON.parse(obj.specifications_overview);
 
     res.send(obj);
+  });
+})
+
+app.get('/getProductsByType/:type', (req, res) => {
+  let type = req.params['type'];
+
+  makeQuery('SELECT * FROM products WHERE type = ?', type).then((rows) => {
+
+    for (let obj of rows) {
+      obj.specifications_details = JSON.parse(obj.specifications_details);
+      obj.specifications_overview = JSON.parse(obj.specifications_overview);
+    }
+    
+    res.send(rows);
   });
 })
 
