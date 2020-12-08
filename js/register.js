@@ -6,12 +6,17 @@ document.getElementById("register").addEventListener("click", function () {
             method: "POST"
         })
         .then(response => {
+            console.log(response.ok);
             if (!response.ok)
-                return Promise.reject(response.json().message)
-            return response.json();
+                return Promise.reject(response.json());
+            else
+                return response.json();
         })
         .then(data => {
-            console.log("Success");
+            alert("Success");
         })
-        .catch(err => console.log(err));
+        .catch((err) => err.then(errData => {
+            alert(errData.message);
+            console.log(errData)
+        }));
 });

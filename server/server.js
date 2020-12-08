@@ -49,12 +49,55 @@ app.post('/register', (req, res) => {
             message: 'Registration successful!'
         });
     }).catch((e) => {
+        if (e.errno = 1062) {
+            return res.status(400).send({
+                message: "User already exists"
+            });
+        }
+
+        console.log(e);
+
+    });
+})
+/*
+app.post('/register', (req, res) => {
+    let username = req.query.username;
+    let password = req.query.password;
+    let password2 = req.query.password2;
+    if (username.length < 6 || username.length > 32)
+        return res.status(400).send({
+            message: 'Username must be between 6 and 32 symbols!'
+        });
+    if (password.length < 6 || password.length > 32)
+        return res.status(400).send({
+            message: 'Password must be between 6 and 32 symbols!'
+        });
+    if (password !== password2)
+        return res.status(400).send({
+            message: 'Both passwords must be the same!'
+        });
+    makeQuery('SELECT * FROM user WHERE username = ?', username).then((rows) => {
+
+        let obj = rows[0];
+        if (obj)
+            return res.status(400).send({
+                message: 'Username is taken!'
+            });
+    });
+    password = passwordHash.generate(password);
+    makeQuery('INSERT INTO `user` (`username`, `password_hash`) VALUES ("?", "?");', username, password).then(() => {
+
+        return res.status(200).send({
+            message: 'Registration successful!'
+        });
+    }).catch((e) => {
         return res.status(400).send({
             message: e
         });
     });
-
 })
+
+*/
 
 app.get('/getProduct', (req, res) => {
     let id = req.query.id;
