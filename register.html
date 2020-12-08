@@ -49,28 +49,30 @@
                     <article class="card-body">
                         <a href="login.html" class="float-right btn btn-outline-dark">Sign in</a>
                         <h4 class="card-title mb-4 mt-1">Sign up</h4>
-                        <form>
+                        <div>
                             <div class="form-group">
                                 <label>Your email</label>
-                                <input name="" class="form-control" placeholder="Email" type="email">
+                                <input id="email" name="" class="form-control" placeholder="Email" type="email">
                             </div>
                             <div class="form-group">
                                 <label>Your password</label>
-                                <input class="form-control" placeholder="******" type="password">
+                                <input id="pass" class="form-control" placeholder="******" type="password">
                             </div>
                             <div class="form-group" style="margin-bottom: 2rem;">
                                 <label>Repeat password</label>
-                                <input class="form-control" placeholder="******" type="password">
+                                <input id="pass2" class="form-control" placeholder="******" type="password">
                             </div>
-                            <div class="form-group">
-                                <a href="login.html" class="btn btn-dark btn-block">Register</a>
+                            <div id="register" class="form-group">
+                                <button class="btn btn-dark btn-block">Register</button>
                             </div>
-                        </form>
+                        </div>
                     </article>
                 </div>
             </div>
         </div>
     </div>
 </body>
+
+<script src="js/register.js"></script>
 
 </html>
