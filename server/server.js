@@ -48,13 +48,10 @@ app.listen(port, () => {
 
 function makeQuery(query, ...args) {
   return new Promise((resolve, reject) => {
-    connection.connect();
     connection.query(query, args, function (err, rows) {
       if (err) reject(err);
       
       resolve(rows);
     }); 
-
-    connection.end();
   });
 }
