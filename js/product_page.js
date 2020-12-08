@@ -42,7 +42,7 @@ function getParameterByName(name, url = window.location.href) {
 }
 
 function getPC(pcId) {
-    return fetch("http://localhost:3000/getProduct/" + pcId, {});
+    return fetch("http://localhost:3000/getProduct?id=" + pcId, {});
 }
 
 

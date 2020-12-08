@@ -15,8 +15,8 @@ const connection = mysql.createConnection({
 
 app.use(express.static(publicDir));
 
-app.get('/getProduct/:id', (req, res) => {
-  let id = req.params['id'];
+app.get('/getProduct', (req, res) => {
+  let id = req.query.id;
 
   makeQuery('SELECT * FROM products WHERE id = ?', id).then((rows) => {
 
@@ -28,8 +28,8 @@ app.get('/getProduct/:id', (req, res) => {
   });
 })
 
-app.get('/getProductsByType/:type', (req, res) => {
-  let type = req.params['type'];
+app.get('/getProductsByType', (req, res) => {
+  let type = req.query.type;
 
   makeQuery('SELECT * FROM products WHERE type = ?', type).then((rows) => {
 
