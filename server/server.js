@@ -15,34 +15,90 @@ app.use(session({
 
 const mysql = require('mysql');
 const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'pc_workbench'
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'pc_workbench'
 })
 
 const routeMap = {
-    GET: {
-        '/': (req, res) => {
-            res.sendFile(path.resolve(publicDir + "/index.html"));
-        },
-        '/component': (req, res) => {
-            res.sendFile(path.resolve(publicDir + "/component_page.html"));
-        },
-        '/404': {}
-    }
+  GET: {
+    '/': getPage('index.html'),
+    '/component': getPage('component_page.html'),
+    '/build-PC': getPage('build-PC.html'),
+    '/cart': getPage('cart.html'),
+    '/checkout': getPage('checkout.html'),
+    '/components': getPage('components.html'),
+    '/login': getPage('login.html'),
+    '/pre-built': getPage('pre-built.html'),
+    '/products': getPage('product-listing.html'),
+    '/computer': getPage('product_page.html'),
+    '/profile': getPage('profile.html'),
+    '/register': getPage('register.html'),
+    '/404': getPage('not-found.html')
+  }
+}
+
+function sendPage(req, res, pageName) {
+  res.sendFile(getPage(pageName));
+}
+
+function getPage(pageName) {
+  return path.resolve(publicDir + "/" + pageName);
 }
 
 app.use('/css', express.static(path.resolve(publicDir + '/css')));
 app.use('/images', express.static(path.resolve(publicDir + '/images')));
 app.use('/client', express.static(path.resolve(publicDir + '/client')));
+app.use('/fontawesome-free-5.13.0-web', express.static(path.resolve(publicDir + '/fontawesome-free-5.13.0-web')));
+
+app.get('/profile', (req, res) => {
+  return res.status(200).send({
+    login: req.session.login,
+    username: req.session.username,
+    name: req.session.name,
+    country: req.session.country,
+    address: req.session.address,
+    photo: req.session.photo
+  });
+})
+
+app.get('/getProduct', (req, res) => {
+  let id = req.query.id;
+
+  makeQuery('SELECT * FROM products WHERE id = ?', id).then((rows) => {
+
+    let obj = rows[0];
+    obj.specifications_details = JSON.parse(obj.specifications_details);
+    obj.specifications_overview = JSON.parse(obj.specifications_overview);
+
+    res.send(obj);
+  });
+})
+
+app.get('/getProductsByType', (req, res) => {
+  let type = req.query.type;
+
+  makeQuery('SELECT * FROM products WHERE type = ?', type).then((rows) => {
+
+    for (let obj of rows) {
+      obj.specifications_details = JSON.parse(obj.specifications_details);
+      obj.specifications_overview = JSON.parse(obj.specifications_overview);
+    }
+
+    res.send(rows);
+  });
+})
 
 app.get('*', (req, res) => {
-    if (Object.keys(routeMap.GET).includes(req.url)) {
-        routeMap.GET[req.url](req, res);
-    } else {
+  let page = req.url.split('?')[0];
 
-    }
+  if (Object.keys(routeMap.GET).includes(page)) {
+    res.sendFile(routeMap.GET[page]);
+    
+  } else {
+    res.sendFile(routeMap.GET['/404']);
+  }
 })
 
 
@@ -111,65 +167,27 @@ app.post('/login', (req, res) => {
   });
 })
 
-app.get('/profile', (req, res) => {
-  return res.status(200).send({
-    login : req.session.login,
-    username : req.session.username,
-    name : req.session.name,
-    country : req.session.country,
-    address : req.session.address,
-    photo : req.session.photo
-  });
-})
-
 app.post('/edit', (req, res) => {
   return res.status(200).send({
-    login : req.session.login,
-    username : req.session.username,
-    name : req.session.name,
-    country : req.session.country,
-    address : req.session.address,
-    photo : req.session.photo
+    login: req.session.login,
+    username: req.session.username,
+    name: req.session.name,
+    country: req.session.country,
+    address: req.session.address,
+    photo: req.session.photo
   });
-})
-
-app.get('/getProduct', (req, res) => {
-    let id = req.query.id;
-
-    makeQuery('SELECT * FROM products WHERE id = ?', id).then((rows) => {
-
-        let obj = rows[0];
-        obj.specifications_details = JSON.parse(obj.specifications_details);
-        obj.specifications_overview = JSON.parse(obj.specifications_overview);
-
-        res.send(obj);
-    });
-})
-
-app.get('/getProductsByType', (req, res) => {
-    let type = req.query.type;
-
-    makeQuery('SELECT * FROM products WHERE type = ?', type).then((rows) => {
-
-        for (let obj of rows) {
-            obj.specifications_details = JSON.parse(obj.specifications_details);
-            obj.specifications_overview = JSON.parse(obj.specifications_overview);
-        }
-
-        res.send(rows);
-    });
 })
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Example app listening at http://localhost:${port}`);
 });
 
 function makeQuery(query, ...args) {
-    return new Promise((resolve, reject) => {
-        connection.query(query, args, function (err, rows) {
-            if (err) reject(err);
+  return new Promise((resolve, reject) => {
+    connection.query(query, args, function (err, rows) {
+      if (err) reject(err);
 
-            resolve(rows);
-        });
+      resolve(rows);
     });
+  });
 }
