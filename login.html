@@ -9,6 +9,10 @@
       body, html {
         height: 100%;
       }
+      .activeErr {
+      padding: 0.5rem;
+      border: 1px solid red;
+    }
     </style>
   </head>
 
@@ -41,53 +45,31 @@
         </li>
       </ul>
     </nav>
-    <div class="d-flex" style="height: 90%;">
-      <div class="row m-auto w-100">
-        <div class="mx-auto" style="width: 350px;">
-          <div class="card bg-light text-dark">
-            <article class="card-body">
-              <a href="/register" class="float-right btn btn-outline-dark"
-                >Sign up</a
-              >
-              <h4 class="card-title mb-4 mt-1">Sign in</h4>
-              <form>
-                <div class="form-group">
-                  <label>Your email</label>
-                  <input
-                    name=""
-                    class="form-control"
-                    placeholder="Email"
-                    type="email"
-                  />
-                </div>
-                <div class="form-group">
-                  <a class="float-right" href="#">Forgot?</a>
-                  <label>Your password</label>
-                  <input
-                    class="form-control"
-                    placeholder="******"
-                    type="password"
-                  />
-                </div>
-                <div class="form-group">
-                  <div class="checkbox">
-                    <label> <input type="checkbox" /> Save password </label>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <a
-                    type="submit"
-                    href="profile.html"
-                    class="btn btn-dark btn-block"
-                  >
-                    Login
-                  </a>
-                </div>
-              </form>
-            </article>
-          </div>
+      <div class="d-flex" style="height: 90%;">
+    <div class="row m-auto w-100">
+      <div class="mx-auto" style="width: 350px;">
+        <div class="card bg-light text-dark">
+          <article class="card-body">
+            <a href="register.html" class="float-right btn btn-outline-dark">Sign up</a>
+            <h4 class="card-title mb-4 mt-1">Sign in</h4>
+            <div id="err"></div>
+            <div class="form-group">
+              <label>Your email</label>
+              <input id="email" name="" class="form-control" placeholder="Email" type="email" />
+            </div>
+            <div class="form-group">
+              <a class="float-right" href="#">Forgot?</a>
+              <label>Your password</label>
+              <input id="pass" class="form-control" placeholder="******" type="password" />
+            </div>
+            <div class="form-group">
+              <button id="login" class="btn btn-dark btn-block">Login</button>
+            </div>
+          </article>
         </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+<script src="client/login.js"></script>
 </html>
