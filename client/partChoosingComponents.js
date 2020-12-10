@@ -1,8 +1,8 @@
 var componentTypeFilter = "";
-var allComponents = new Array();
+var allComponents = [];
 
 function loadAllComponents() {
-    allComponents = JSON.parse(data);
+    // allComponents = data;
 }
 
 function componentFilter(components) {
@@ -89,6 +89,7 @@ function clearComponentView() {
         allComponentsNode.removeChild(allComponentsNode.lastChild);
     }
 }
+
 function updateComponentView() {
     clearComponentView();
     var filteredOut;
@@ -101,8 +102,13 @@ function updateComponentView() {
 
 $(document).ready(function () {
 
-    loadAllComponents();
-    updateComponentView();
+    //loadAllComponents();
+    fetch("http://localhost:3000/getAllComponents")
+        .then(response => response.json())
+        .then(dataReceived => {
+            allComponents = dataReceived;
+            updateComponentView();
+        });
 });
 
 
@@ -117,13 +123,11 @@ function filterIt(event) {
         componentTypeFilter = "";
         loadAllComponents();
         updateComponentView();
-    }
-    else if (event.target.id != componentTypeFilter) {
+    } else if (event.target.id != componentTypeFilter) {
         componentTypeFilter = event.target.id;
         loadAllComponents();
         updateComponentView();
-    }
-    else {
+    } else {
         uncheckAll("all");
         componentTypeFilter = "";
         loadAllComponents();
