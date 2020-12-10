@@ -52,7 +52,7 @@ app.use('/images', express.static(path.resolve(publicDir + '/images')));
 app.use('/client', express.static(path.resolve(publicDir + '/client')));
 app.use('/fontawesome-free-5.13.0-web', express.static(path.resolve(publicDir + '/fontawesome-free-5.13.0-web')));
 
-app.get('/profile', (req, res) => {
+app.get('/info', (req, res) => {
   return res.status(200).send({
     login: req.session.login,
     username: req.session.username,
