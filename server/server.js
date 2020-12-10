@@ -145,17 +145,16 @@ app.post('/login', (req, res) => {
     let obj = rows[0];
     if (!obj)
       return res.status(400).send({
-        message: `No one named ${username} is registered!`
+        message: `${username} is not registered!`
       });
     if (passwordHash.verify(password, obj.password_hash.replace(/'/g, ''))) {
       req.session.logged = true;
       req.session.username = obj.username;
-      req.session.password = obj.password_hash.replace(/'/g, '');
       req.session.name = obj.name ? obj.name : "";
       req.session.country = obj.country ? obj.country : "";
       req.session.address = obj.address ? obj.address : "";
       req.session.photo = obj.photo ? obj.photo : "";
-      console.log(req.session);
+      
       return res.status(200).send({
         message: "Successful login!"
       });
