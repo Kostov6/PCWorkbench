@@ -87,18 +87,6 @@ app.get('/getProductsByType', (req, res) => {
   });
 })
 
-app.get('*', (req, res) => {
-  let page = req.url.split('?')[0];
-
-  if (Object.keys(routeMap.GET).includes(page)) {
-    res.sendFile(routeMap.GET[page]);
-    
-  } else {
-    res.sendFile(routeMap.GET['/not-found']);
-  }
-})
-
-
 app.post('/register', (req, res) => {
   let username = req.query.username;
   let password = req.query.password;
@@ -239,6 +227,17 @@ app.get('/getAllComponents', (req, res) => {
         res.send(rows);
     });
 })
+
+app.get('*', (req, res) => {
+  let page = req.url.split('?')[0];
+
+  if (Object.keys(routeMap.GET).includes(page)) {
+    res.sendFile(routeMap.GET[page]);
+    
+  } else {
+    res.sendFile(routeMap.GET['/not-found']);
+  }
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
