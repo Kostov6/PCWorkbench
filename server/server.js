@@ -55,8 +55,7 @@ app.get('/info', (req, res) => {
     name: req.session.name,
     country: req.session.country,
     address: req.session.address,
-    photo: req.session.photo,
-    cart: req.session.cartItems
+    photo: req.session.photo
   });
 })
 
@@ -85,6 +84,23 @@ app.get('/getProductsByType', (req, res) => {
 
     res.send(rows);
   });
+})
+
+app.get('/cartItems', (req, res) => {
+    makeQuery('SELECT cart_items FROM user WHERE username = ?', req.session.username).then(data => {
+      data = JSON.parse(data[0]['cart_items']);
+      console.log(data);
+      let itemIds = data.map(obj => obj.id);
+      
+      makeQuery('SELECT id, title, type, price, photo FROM products WHERE id IN (?)', itemIds).then(rows => {
+        
+        for (let obj in rows) {
+          rows[obj].quantity = data[obj].quantity;
+        }
+    
+        res.send(rows);
+      })
+    }) 
 })
 
 app.post('/register', (req, res) => {
@@ -139,7 +155,6 @@ app.post('/login', (req, res) => {
       req.session.country = obj.country ? obj.country : "";
       req.session.address = obj.address ? obj.address : "";
       req.session.photo = obj.photo ? obj.photo : "";
-      req.session.cartItems = JSON.parse(obj.cart_items);
       console.log(req.session.username);
       return res.status(200).send({
         message: "Successful login!"
