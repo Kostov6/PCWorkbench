@@ -13,10 +13,13 @@ document.getElementById("register").addEventListener("click", function () {
                 return response.json();
         })
         .then(data => {
-            alert("Success");
+            window.location.href = "http://localhost:3000/index.html";
         })
         .catch((err) => err.then(errData => {
-            alert(errData.message);
+            const errEl = document.getElementById("err");
+            errEl.setAttribute("class", "activeErr");
+            errEl.innerHTML = errData.message;
+
             console.log(errData)
         }));
 });
