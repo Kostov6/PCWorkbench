@@ -39,10 +39,6 @@ const routeMap = {
   }
 }
 
-function sendPage(req, res, pageName) {
-  res.sendFile(getPage(pageName));
-}
-
 function getPage(pageName) {
   return path.resolve(publicDir + "/" + pageName);
 }
@@ -154,7 +150,12 @@ app.post('/login', (req, res) => {
       req.session.country = obj.country ? obj.country : "";
       req.session.address = obj.address ? obj.address : "";
       req.session.photo = obj.photo ? obj.photo : "";
+<<<<<<< Updated upstream
       
+=======
+      req.session.cartItems = JSON.parse(obj.cart_items);
+      console.log(req.session);
+>>>>>>> Stashed changes
       return res.status(200).send({
         message: "Successful login!"
       });
