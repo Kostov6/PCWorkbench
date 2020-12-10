@@ -1,14 +1,12 @@
 const express = require('express');
 const passwordHash = require('password-hash');
 const publicDir = `${__dirname}/..`;
+const path = require('path')
 
 const app = express();
 const port = 3000;
 
 const mysql = require('mysql');
-const {
-    resolve
-} = require('path');
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -16,7 +14,25 @@ const connection = mysql.createConnection({
     database: 'pc_workbench'
 })
 
-app.use(express.static(publicDir));
+const routeMap = {
+    GET: {
+        '/': (req, res) => {
+            res.sendFile(path.resolve(publicDir + "/index.html"));
+        },
+        '/component': (req, res) => {
+            res.sendFile(path.resolve(publicDir + "/component_page.html"));
+        }
+    }
+}
+
+app.use('/css', express.static(path.resolve(publicDir + '/css')));
+app.use('/images', express.static(path.resolve(publicDir + '/images')));
+app.use('/client', express.static(path.resolve(publicDir + '/client')));
+
+app.get('*', (req, res) => {
+    console.log(req.url);
+})
+
 
 app.post('/register', (req, res) => {
     let username = req.query.username;
