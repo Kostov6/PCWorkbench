@@ -165,14 +165,30 @@ app.post('/login', (req, res) => {
 })
 
 app.post('/edit', (req, res) => {
-  return res.status(200).send({
-    login: req.session.login,
-    username: req.session.username,
-    name: req.session.name,
-    country: req.session.country,
-    address: req.session.address,
-    photo: req.session.photo
-  });
+  let name = req.query.fname + " " + req.query.lname;
+  let country = req.query.country;
+  let city = req.query.country;
+  let address = req.query.address;
+  let password = req.query.password;
+  let password2 = req.query.password2;
+  if (req.session.name == name || !req.query.fname || !req.query.lname) {
+    name = req.session.name;
+  }
+  if (req.session.country == country || !country) {
+    country = req.session.country;
+  }
+  if (req.session.city == city || !city) {
+    city = req.session.city;
+  }
+  if (req.session.address == address || !address) {
+    address = req.session.address;
+  }
+  if (req.session.password == password || !country) {
+    country = req.session.country;
+  }
+  if (req.session.country == country || !country) {
+    country = req.session.country;
+  }
 })
 
 app.listen(port, () => {
