@@ -35,7 +35,7 @@ const routeMap = {
     '/computer': getPage('product_page.html'),
     '/profile': getPage('profile.html'),
     '/register': getPage('register.html'),
-    '/404': getPage('not-found.html')
+    '/not-found': getPage('not-found.html')
   }
 }
 
@@ -97,7 +97,7 @@ app.get('*', (req, res) => {
     res.sendFile(routeMap.GET[page]);
     
   } else {
-    res.sendFile(routeMap.GET['/404']);
+    res.sendFile(routeMap.GET['/not-found']);
   }
 })
 

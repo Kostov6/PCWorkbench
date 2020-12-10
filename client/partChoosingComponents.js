@@ -39,7 +39,7 @@ function addComponentToView(component) {
     imgWrap.appendChild(imageNode);
 
     nameNode = document.createElement("a");
-    nameNode.setAttribute("href", "./component_page.html");
+    nameNode.setAttribute("href", "./component");
     nameNode.setAttribute("style", "text-decoration: none;");
     nameNode.setAttribute("class", "name col-4 text-dark font-weight-bold align-self-center text-wrap");
     nameNode.setAttribute("name", "name");

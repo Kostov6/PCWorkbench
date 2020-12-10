@@ -13,7 +13,7 @@ document.getElementById("register").addEventListener("click", function () {
                 return response.json();
         })
         .then(data => {
-            window.location.href = "http://localhost:3000/login.html";
+            window.location.href = "http://localhost:3000/login";
         })
         .catch((err) => err.then(errData => {
             const errEl = document.getElementById("err");

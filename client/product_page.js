@@ -54,7 +54,7 @@ if (pcId !== null && pcId !== "") {
         }));
 } else {
     //redirect to page not found
-    window.location.href = "http://localhost:3000/not-found.html";
+    window.location.href = "http://localhost:3000/not-found";
 }
 
 function setElement(elementId, data) {
