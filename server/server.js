@@ -39,10 +39,6 @@ const routeMap = {
   }
 }
 
-function sendPage(req, res, pageName) {
-  res.sendFile(getPage(pageName));
-}
-
 function getPage(pageName) {
   return path.resolve(publicDir + "/" + pageName);
 }
@@ -52,7 +48,7 @@ app.use('/images', express.static(path.resolve(publicDir + '/images')));
 app.use('/client', express.static(path.resolve(publicDir + '/client')));
 app.use('/fontawesome-free-5.13.0-web', express.static(path.resolve(publicDir + '/fontawesome-free-5.13.0-web')));
 
-app.get('/profile', (req, res) => {
+app.get('/info', (req, res) => {
   return res.status(200).send({
     login: req.session.login,
     username: req.session.username,
@@ -145,17 +141,21 @@ app.post('/login', (req, res) => {
     let obj = rows[0];
     if (!obj)
       return res.status(400).send({
-        message: `No one named ${username} is registered!`
+        message: `${username} is not registered!`
       });
     if (passwordHash.verify(password, obj.password_hash.replace(/'/g, ''))) {
       req.session.logged = true;
       req.session.username = obj.username;
-      req.session.password = obj.password_hash.replace(/'/g, '');
       req.session.name = obj.name ? obj.name : "";
       req.session.country = obj.country ? obj.country : "";
       req.session.address = obj.address ? obj.address : "";
       req.session.photo = obj.photo ? obj.photo : "";
+<<<<<<< Updated upstream
+      
+=======
+      req.session.cartItems = JSON.parse(obj.cart_items);
       console.log(req.session);
+>>>>>>> Stashed changes
       return res.status(200).send({
         message: "Successful login!"
       });
