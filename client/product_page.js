@@ -11,13 +11,11 @@ const pcId = getParameterByName("id");
 if (pcId !== null && pcId !== "") {
     fetch("http://localhost:3000/getProduct?id=" + pcId)
         .then(response => {
-            console.log(response.status);
-            if (response.status == 200)
-                return response.json()
-            else {
-                console.log("Rejecting");
-                return Promise.reject(response.statusText);
-            }
+            console.log(response.ok);
+            if (!response.ok)
+                return Promise.reject(response.json());
+            else
+                return response.json();
         })
         .then(data => {
             const pcInfo = data;
@@ -49,12 +47,14 @@ if (pcId !== null && pcId !== "") {
             setElement("video_connectivity", spec.video_connectivity);
 
         })
-        .catch(err => {
-            console.log(err);
-        });
+        .catch((err) => err.then(errData => {
+
+
+            console.log(errData)
+        }));
 } else {
     //redirect to page not found
-
+    window.location.href = "http://localhost:3000/not-found.html";
 }
 
 function setElement(elementId, data) {
