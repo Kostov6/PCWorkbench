@@ -19,7 +19,9 @@ function componentFilter(components) {
     ks;
 }
 
-function filter(components) {
+function filterByPrice(components) {
+
+
     return components;
 }
 
@@ -94,7 +96,7 @@ function updateComponentView() {
     clearComponentView();
     var filteredOut;
     filteredOut = componentFilter(allComponents);
-    filteredOut = filter(filteredOut);
+    filteredOut = filterByPrice(filteredOut);
     for (i = 0; i < filteredOut.length; i++) {
         addComponentToView(filteredOut[i]);
     }

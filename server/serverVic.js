@@ -146,6 +146,14 @@ app.get('/getAllComponents', (req, res) => {
                     converted.data1 = obj.specifications_details.model["Model"];
                     converted.data2 = obj.specifications_details.details["Memory Size"] + " GB";
                     break;
+                case "motherboard":
+                    converted.data1 = obj.specifications_details.model["Model"];
+                    converted.data2 = obj.specifications_details.details["Maximum Memory Supported"] + " MAX RAM";
+                    break;
+                case "ram":
+                    converted.data1 = obj.specifications_details.details["Capacity"];
+                    converted.data2 = obj.specifications_details.details["Speed"];
+                    break;
             }
 
 
