@@ -5,10 +5,10 @@ fetch(`http://localhost:3000/info`, {
     if (!response.ok)
         return Promise.reject(response.json());
     else
-        return response.json();
+        return Promise.resolve(response.json());
 })
 .then(data => {
-    window.location.href = "http://localhost:3000/login";
+    console.log(data);
 })
 .catch((err) => err.then(errData => {
     const errEl = document.getElementById("err");

@@ -50,12 +50,13 @@ app.use('/fontawesome-free-5.13.0-web', express.static(path.resolve(publicDir + 
 
 app.get('/info', (req, res) => {
   return res.status(200).send({
-    login: req.session.login,
+    login: req.session.logged,
     username: req.session.username,
     name: req.session.name,
     country: req.session.country,
     address: req.session.address,
-    photo: req.session.photo
+    photo: req.session.photo,
+    cart: req.session.cartItems
   });
 })
 
@@ -150,12 +151,8 @@ app.post('/login', (req, res) => {
       req.session.country = obj.country ? obj.country : "";
       req.session.address = obj.address ? obj.address : "";
       req.session.photo = obj.photo ? obj.photo : "";
-<<<<<<< Updated upstream
-      
-=======
       req.session.cartItems = JSON.parse(obj.cart_items);
-      console.log(req.session);
->>>>>>> Stashed changes
+      console.log(req.session.username);
       return res.status(200).send({
         message: "Successful login!"
       });

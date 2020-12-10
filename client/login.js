@@ -8,11 +8,9 @@ document.getElementById("login").addEventListener("click", function () {
             console.log(response.ok);
             if (!response.ok)
                 return Promise.reject(response.json());
-            else
-                return response.json();
         })
         .then(data => {
-            window.location.href = "http://localhost:3000/profile.html";
+            window.location.href = "http://localhost:3000/profile";
         })
         .catch((err) => err.then(errData => {
             const errEl = document.getElementById("err");
