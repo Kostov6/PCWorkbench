@@ -25,13 +25,38 @@ slider2.oninput = function () {
 
 */
 var componentTypeFilter = "";
-var allComponents = new Array();
+var manufacturerFilter = ""
+var allComponents = [];
 
-function loadAllComponents() {
-    allComponents = data;
+function filterPrice() {
+    updateComponentView();
+}
+
+function uncheckAll(id) {
+    $('input[type="checkbox"]').prop('checked', false);
+    document.getElementById(id).checked = true;
+}
+
+function filterIt(event) {
+    uncheckAll(event.target.id);
+    if (event.target.id == "all") {
+        manufacturerFilter = "";
+        updateComponentView();
+    } else if (event.target.id != manufacturerFilter) {
+        manufacturerFilter = event.target.id;
+        updateComponentView();
+    } else {
+        uncheckAll("all");
+        manufacturerFilter = "";
+        updateComponentView();
+    }
 }
 
 function componentFilter(components) {
+    return components.filter(item => {
+        return (item.type == componentTypeFilter || componentTypeFilter == "") && (item.brand == manufacturerFilter || manufacturerFilter == "")
+    })
+
     var filteredOut = new Array();
     for (i = 0; i < components.length; i++) {
         if (
@@ -42,11 +67,71 @@ function componentFilter(components) {
         }
     }
     return filteredOut;
-    ks;
 }
 
-function filter(components) {
-    return components;
+function filterByPrice(components) {
+    const minValue = document.getElementById("minPrice").value;
+    const maxValue = document.getElementById("maxPrice").value;
+    document.getElementById("minPriceView").innerHTML = minValue + '$';
+    document.getElementById("maxPriceView").innerHTML = maxValue + '$';
+
+    return components.filter(item => {
+        return item.price >= minValue && item.price <= maxValue;
+    });
+}
+
+
+function clearComponentView() {
+    allComponentsNode = document.getElementById("components");
+    while (allComponentsNode.firstChild) {
+        allComponentsNode.removeChild(allComponentsNode.lastChild);
+    }
+}
+
+function updateComponentView() {
+    clearComponentView();
+    var filteredOut;
+    filteredOut = componentFilter(allComponents);
+    filteredOut = filterByPrice(filteredOut);
+    for (i = 0; i < filteredOut.length; i++) {
+        addComponentToView(filteredOut[i]);
+    }
+    validPowerSupplies();
+}
+
+
+function addComponent(event) {
+    var siblings = event.target.parentNode.parentNode.children;
+    var compName;
+    for (i = 0; i < siblings.length; i++) {
+        if (siblings[i].getAttribute("class").includes("name")) {
+            compName = siblings[i].innerText;
+        }
+    }
+
+    for (i = 0; i < allComponents.length; i++) {
+        if (allComponents[i].name == compName) {
+            comp = allComponents[i];
+            break;
+        }
+    }
+    console.log(comp);
+    document.getElementById(comp.type).style.visibility = "hidden";
+    document.getElementById(comp.type + "I").style.visibility = "visible";
+    document.getElementById(comp.type + "T").innerText = comp.name;
+    if (chosenComponents[comp.type] != "" && !document.getElementById("C" + comp.type).checked) {
+        price -= chosenComponents[comp.type].price;
+        wattage -= chosenComponents[comp.type].wattage;
+    } else if (document.getElementById("C" + comp.type).checked) {
+        document.getElementById("C" + comp.type).checked = false;
+        parts++;
+    } else {
+        parts++;
+    }
+    chosenComponents[comp.type] = comp;
+    price += comp.price;
+    wattage += comp.wattage;
+    update();
 }
 
 function addComponentToView(component) {
@@ -65,7 +150,7 @@ function addComponentToView(component) {
     imgWrap.appendChild(imageNode);
 
     nameNode = document.createElement("a");
-    nameNode.setAttribute("href", "/component");
+    nameNode.setAttribute("href", "./component?id=" + component.id);
     nameNode.setAttribute("style", "text-decoration: none;");
     nameNode.setAttribute("class", "name col-4 text-dark font-weight-bold align-self-center text-wrap");
     nameNode.setAttribute("name", "name");
@@ -117,112 +202,93 @@ function addComponentToView(component) {
     allComponentsNode.appendChild(componentNode);
 }
 
-function clearComponentView() {
-    allComponentsNode = document.getElementById("components");
-    while (allComponentsNode.firstChild) {
-        allComponentsNode.removeChild(allComponentsNode.lastChild);
-    }
-}
-
-function updateComponentView() {
-    clearComponentView();
-    var filteredOut;
-    filteredOut = componentFilter(allComponents);
-    filteredOut = filter(filteredOut);
-    for (i = 0; i < filteredOut.length; i++) {
-        addComponentToView(filteredOut[i]);
-    }
-    validPowerSupplies();
+function clearBorders() {
+    const noBorder = "";
+    document.getElementById("motherboard").style.border = noBorder;
+    document.getElementById("cpu").style.border = noBorder;
+    document.getElementById("gpu").style.border = noBorder;
+    document.getElementById("power").style.border = noBorder;
+    document.getElementById("ram").style.border = noBorder;
+    document.getElementById("supply").style.border = noBorder;
+    document.getElementById("chassis").style.border = noBorder;
+    document.getElementById("fan").style.border = noBorder;
 }
 
 $(document).ready(function () {
     document.getElementById("showAll").addEventListener("click", (event) => {
+        clearBorders();
         componentTypeFilter = "";
         updateComponentView();
     });
 
-    document.getElementById("motherBoard").addEventListener("click", (event) => {
-        componentTypeFilter = "motherBoard";
+    document.getElementById("motherboard").addEventListener("click", (event) => {
+        clearBorders();
+        document.getElementById("motherboard").style.border = "4px solid gray";
+        componentTypeFilter = "motherboard";
         console.log("motherBoard");
         updateComponentView();
     });
 
-    document.getElementById("CPU").addEventListener("click", (event) => {
-        componentTypeFilter = "CPU";
+    document.getElementById("cpu").addEventListener("click", (event) => {
+        clearBorders();
+        document.getElementById("cpu").style.border = "4px solid gray";
+        componentTypeFilter = "cpu";
         console.log("CPU");
         updateComponentView();
     });
 
-    document.getElementById("GPU").addEventListener("click", (event) => {
-        componentTypeFilter = "GPU";
+    document.getElementById("gpu").addEventListener("click", (event) => {
+        clearBorders();
+        document.getElementById("gpu").style.border = "4px solid gray";
+        componentTypeFilter = "gpu";
         console.log("GPU");
         updateComponentView();
     });
 
     document.getElementById("power").addEventListener("click", (event) => {
+        clearBorders();
+        document.getElementById("power").style.border = "4px solid gray";
         componentTypeFilter = "power";
         console.log("power");
         updateComponentView();
     });
 
-    document.getElementById("RAM").addEventListener("click", (event) => {
-        componentTypeFilter = "RAM";
+    document.getElementById("ram").addEventListener("click", (event) => {
+        clearBorders();
+        document.getElementById("ram").style.border = "4px solid gray";
+        componentTypeFilter = "ram";
         console.log("RAM");
         updateComponentView();
     });
 
-    document.getElementById("HDD").addEventListener("click", (event) => {
-        componentTypeFilter = "HDD";
+    document.getElementById("supply").addEventListener("click", (event) => {
+        clearBorders();
+        document.getElementById("supply").style.border = "4px solid gray";
+        componentTypeFilter = "supply";
         console.log("HDD");
         updateComponentView();
     });
 
     document.getElementById("chassis").addEventListener("click", (event) => {
+        clearBorders();
+        document.getElementById("chassis").style.border = "4px solid gray";
         componentTypeFilter = "chassis";
         console.log("chassis");
         updateComponentView();
     });
 
     document.getElementById("fan").addEventListener("click", (event) => {
+        clearBorders();
+        document.getElementById("fan").style.border = "4px solid gray";
         componentTypeFilter = "fan";
         console.log("fan");
         updateComponentView();
     });
 
-    loadAllComponents();
-    updateComponentView();
+    fetch("http://localhost:3000/getAllComponents")
+        .then(response => response.json())
+        .then(dataReceived => {
+            allComponents = dataReceived;
+            updateComponentView();
+        });
 });
-
-function addComponent(event) {
-    var siblings = event.target.parentNode.parentNode.children;
-    var compName;
-    for (i = 0; i < siblings.length; i++) {
-        if (siblings[i].getAttribute("class").includes("name")) {
-            compName = siblings[i].innerText;
-        }
-    }
-
-    for (i = 0; i < allComponents.length; i++) {
-        if (allComponents[i].name == compName) {
-            comp = allComponents[i];
-            break;
-        }
-    }
-    console.log(comp);
-    document.getElementById(comp.type).style.visibility = "hidden";
-    document.getElementById(comp.type + "I").style.visibility = "visible";
-    document.getElementById(comp.type + "T").innerText = comp.name;
-    if (chosenComponents[comp.type] != "" && !document.getElementById("C" + comp.type).checked) {
-        price -= chosenComponents[comp.type].price;
-        wattage -= chosenComponents[comp.type].wattage;
-    } else if (document.getElementById("C" + comp.type).checked) {
-        document.getElementById("C" + comp.type).checked = false;
-        parts++;
-    } else {
-        parts++;
-    }
-    chosenComponents[comp.type] = comp;
-    price += comp.price;
-    wattage += comp.wattage;
-    update();
-}

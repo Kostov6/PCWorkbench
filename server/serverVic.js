@@ -71,7 +71,6 @@ app.get('/login', (req, res) => {
     });
 })
 
-
 app.get('/getProduct', (req, res) => {
     let id = req.query.id;
 
@@ -128,12 +127,14 @@ app.get('/getAllComponents', (req, res) => {
             obj.specifications_overview = JSON.parse(obj.specifications_overview);
 
             converted = {
+                "id": obj.id,
                 "name": obj.title,
                 "type": obj.type,
                 "wattage": 69,
                 "price": obj.price,
                 "data1": obj.specifications_details.model.Brand,
                 "data2": obj.specifications_details.model.Brand,
+                "brand": obj.specifications_details.model.Brand,
                 "img": obj.photo
             }
 

@@ -1,12 +1,12 @@
 var componentTypeFilter = "";
 var allComponents = [];
 
-function loadAllComponents() {
-    // allComponents = data;
-}
-
 function componentFilter(components) {
+    return components.filter(item => {
+        return item.type == componentTypeFilter || componentTypeFilter == ""
+    })
     var filteredOut = new Array();
+
     for (i = 0; i < components.length; i++) {
         if (
             components[i].type == componentTypeFilter ||
@@ -20,9 +20,14 @@ function componentFilter(components) {
 }
 
 function filterByPrice(components) {
+    const minValue = document.getElementById("minPrice").value;
+    const maxValue = document.getElementById("maxPrice").value;
+    document.getElementById("minPriceView").innerHTML = minValue + '$';
+    document.getElementById("maxPriceView").innerHTML = maxValue + '$';
 
-
-    return components;
+    return components.filter(item => {
+        return item.price >= minValue && item.price <= maxValue;
+    });
 }
 
 function addComponentToView(component) {
@@ -41,7 +46,7 @@ function addComponentToView(component) {
     imgWrap.appendChild(imageNode);
 
     nameNode = document.createElement("a");
-    nameNode.setAttribute("href", "./component");
+    nameNode.setAttribute("href", "./component?id=" + component.id);
     nameNode.setAttribute("style", "text-decoration: none;");
     nameNode.setAttribute("class", "name col-4 text-dark font-weight-bold align-self-center text-wrap");
     nameNode.setAttribute("name", "name");
@@ -104,7 +109,6 @@ function updateComponentView() {
 
 $(document).ready(function () {
 
-    //loadAllComponents();
     fetch("http://localhost:3000/getAllComponents")
         .then(response => response.json())
         .then(dataReceived => {
@@ -119,20 +123,21 @@ function uncheckAll(id) {
     document.getElementById(id).checked = true;
 }
 
+function filterPrice() {
+    updateComponentView();
+}
+
 function filterIt(event) {
     uncheckAll(event.target.id);
     if (event.target.id == "all") {
         componentTypeFilter = "";
-        loadAllComponents();
         updateComponentView();
     } else if (event.target.id != componentTypeFilter) {
         componentTypeFilter = event.target.id;
-        loadAllComponents();
         updateComponentView();
     } else {
         uncheckAll("all");
         componentTypeFilter = "";
-        loadAllComponents();
         updateComponentView();
     }
 }
