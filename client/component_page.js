@@ -11,13 +11,11 @@ const partId = getParameterByName("id");
 if (partId !== null && partId !== "") {
     fetch("http://localhost:3000/getProduct?id=" + partId)
         .then(response => {
-            console.log(response);
-            if (response.status == 200)
-                return response.json()
-            else {
-                console.log("Rejecting");
-                return Promise.reject(response.statusText);
-            }
+            console.log(response.ok);
+            if (!response.ok)
+                return Promise.reject(response.json());
+            else
+                return response.json();
         })
         .then(data => {
             const partInfo = data;
@@ -39,13 +37,15 @@ if (partId !== null && partId !== "") {
             addRows("model", model);
             addRows("details", details);
         })
-        .catch(err => {
-            console.log(err);
-        });
+        .catch((err) => err.then(errData => {
+
+
+            console.log(errData)
+        }));
 
 } else {
     //redirect to page not found
-
+    window.location.href = "http://localhost:3000/not-found.html";
 }
 
 function setElement(elementId, data) {
