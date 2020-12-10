@@ -182,7 +182,7 @@ app.post('/edit', (req, res) => {
 app.get('/getAllComponents', (req, res) => {
     let brand = req.query.brand;
 
-    makeQuery('SELECT * FROM products').then((rows) => {
+    makeQuery('SELECT * FROM products WHERE type != "PC"').then((rows) => {
 
         rows = rows.map(obj => {
             obj.specifications_details = JSON.parse(obj.specifications_details);

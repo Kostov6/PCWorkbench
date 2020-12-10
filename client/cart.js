@@ -8,7 +8,11 @@ fetch(`http://localhost:3000/info`, {
         return Promise.resolve(response.json());
 })
 .then(data => {
-    console.log(data);
+    let cartItems = data.cart;
+
+    for (let item of cartItems) {
+        
+    }
 })
 .catch((err) => err.then(errData => {
     const errEl = document.getElementById("err");
