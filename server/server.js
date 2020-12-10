@@ -1,10 +1,17 @@
 const express = require('express');
 const passwordHash = require('password-hash');
+const session = require('express-session');
 const publicDir = `${__dirname}/..`;
 const path = require('path')
 
 const app = express();
 const port = 3000;
+
+app.use(session({
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: true
+}));
 
 const mysql = require('mysql');
 const connection = mysql.createConnection({
@@ -40,66 +47,91 @@ app.get('*', (req, res) => {
 
 
 app.post('/register', (req, res) => {
-    let username = req.query.username;
-    let password = req.query.password;
-    let password2 = req.query.password2;
-    if (username.length < 6 || username.length > 32)
-        return res.status(400).send({
-            message: 'Username must be between 6 and 32 symbols!'
-        });
-    if (password.length < 6 || password.length > 32)
-        return res.status(400).send({
-            message: 'Password must be between 6 and 32 symbols!'
-        });
-    if (password !== password2)
-        return res.status(400).send({
-            message: 'Both passwords must be the same!'
-        });
-    makeQuery('SELECT * FROM user WHERE username = "?"', username).then((rows) => {
-        if (rows && rows.length)
-            return res.status(400).send({
-                message: 'Username is taken!'
-            });
+  let username = req.query.username;
+  let password = req.query.password;
+  let password2 = req.query.password2;
+  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if (!re.test(String(username).toLowerCase()))
+    return res.status(400).send({
+      message: 'Email is not valid!'
     });
-    password = passwordHash.generate(password);
-    makeQuery('INSERT INTO `user` (`username`, `password_hash`) VALUES ("?", "?");', username, password).then(() => {
-
-        return res.status(200).send({
-            message: 'Registration successful!'
-        });
-    }).catch((e) => {
-        if (e.errno = 1062) {
-            return res.status(400).send({
-                message: "User already exists"
-            });
-        }
-
-        console.log(e);
-
+  if (password.length < 6 || password.length > 32)
+    return res.status(400).send({
+      message: 'Password must be between 6 and 32 symbols!'
     });
+  if (password !== password2)
+    return res.status(400).send({
+      message: 'Both passwords must be the same!'
+    });
+  makeQuery('SELECT * FROM user WHERE username = "?"', username).then((rows) => {
+    if (rows && rows.length)
+      return res.status(400).send({
+        message: 'Username is taken!'
+      });
+  });
+  password = passwordHash.generate(password);
+  makeQuery('INSERT INTO `user` (`username`, `password_hash`) VALUES ("?", "?");', username, password).then(() => {
+
+    return res.status(200).send({
+      message: 'Registration successful!'
+    });
+  }).catch((e) => {
+    return res.status(400).send({
+      message: e
+    });
+  });
 })
 
 app.post('/login', (req, res) => {
-    let username = req.query.username;
-    let password = req.query.password;
-    makeQuery('SELECT * FROM user WHERE username = "?"', username).then((rows) => {
-        let obj = rows[0];
-        console.log(obj)
-        if (!obj)
-            return res.status(400).send({
-                message: `No one named ${username} is registered!`
-            });
-        if (passwordHash.verify(password, obj.password_hash))
-            return res.status(200).send({
-                message: "Success!"
-            });
-        else
-            return res.status(400).send({
-                message: "Wrong password!"
-            });
-    });
+  let username = req.query.username;
+  let password = req.query.password;
+  makeQuery('SELECT * FROM user WHERE username = "?"', username).then((rows) => {
+    let obj = rows[0];
+    if (!obj)
+      return res.status(400).send({
+        message: `No one named ${username} is registered!`
+      });
+    if (passwordHash.verify(password, obj.password_hash.replace(/'/g, ''))) {
+      req.session.logged = true;
+      req.session.username = obj.username;
+      req.session.password = obj.password_hash.replace(/'/g, '');
+      req.session.name = obj.name ? obj.name : "";
+      req.session.country = obj.country ? obj.country : "";
+      req.session.address = obj.address ? obj.address : "";
+      req.session.photo = obj.photo ? obj.photo : "";
+      console.log(req.session);
+      return res.status(200).send({
+        message: "Successful login!"
+      });
+    }
+    else
+      return res.status(400).send({
+        message: "Wrong password!"
+      });
+  });
 })
 
+app.get('/profile', (req, res) => {
+  return res.status(200).send({
+    login : req.session.login,
+    username : req.session.username,
+    name : req.session.name,
+    country : req.session.country,
+    address : req.session.address,
+    photo : req.session.photo
+  });
+})
+
+app.post('/edit', (req, res) => {
+  return res.status(200).send({
+    login : req.session.login,
+    username : req.session.username,
+    name : req.session.name,
+    country : req.session.country,
+    address : req.session.address,
+    photo : req.session.photo
+  });
+})
 
 app.get('/getProduct', (req, res) => {
     let id = req.query.id;
