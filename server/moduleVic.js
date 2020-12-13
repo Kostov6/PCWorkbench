@@ -5,7 +5,7 @@ const {
 function getAllComponents(req, res) {
     let brand = req.query.brand;
 
-    makeQuery('SELECT * FROM products').then((rows) => {
+    makeQuery('SELECT * FROM products WHERE type != "pc-home" AND type != "pc-office" AND type != "pc-gaming"').then((rows) => {
 
         rows = rows.map(obj => {
             obj.specifications_details = JSON.parse(obj.specifications_details);
@@ -51,8 +51,22 @@ function getAllComponents(req, res) {
     });
 };
 
+function getAllComputers(req, res) {
+    const type = req.query.type;
+    makeQuery('SELECT id,photo as image,title,price,filters FROM products WHERE type = ?', type).then((rows) => {
+
+        res.send(rows);
+    });
+}
+
 module.exports = [{
-    method: "GET",
-    path: '/getAllComponents',
-    endpointFunction: getAllComponents
-}]
+        method: "GET",
+        path: '/getAllComponents',
+        endpointFunction: getAllComponents
+    },
+    {
+        method: "GET",
+        path: '/getAllComputers',
+        endpointFunction: getAllComputers
+    }
+]
