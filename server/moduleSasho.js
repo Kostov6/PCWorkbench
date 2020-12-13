@@ -9,17 +9,17 @@ function info(req, res) {
         username: req.session.username,
         name: req.session.name,
         country: req.session.country,
+        city: req.session.city,
         address: req.session.address,
-        photo: req.session.photo,
-        cart: req.session.cartItems
+        photo: req.session.photo
     });
 };
 
 
 function login(req, res) {
-    let username = req.query.username;
-    let password = req.query.password;
-    makeQuery('SELECT * FROM user WHERE username = "?"', username).then((rows) => {
+    let username = req.body.username;
+    let password = req.body.password;
+    makeQuery('SELECT * FROM user WHERE username = ?', username).then((rows) => {
         let obj = rows[0];
         if (!obj)
             return res.status(400).send({
@@ -29,11 +29,11 @@ function login(req, res) {
             req.session.logged = true;
             req.session.username = obj.username;
             req.session.name = obj.name ? obj.name : "";
+            req.session.password = obj.password_hash.replace(/'/g, '');
             req.session.country = obj.country ? obj.country : "";
+            req.session.city = obj.city ? obj.city : "";
             req.session.address = obj.address ? obj.address : "";
             req.session.photo = obj.photo ? obj.photo : "";
-            // req.session.cartItems = JSON.parse(obj.cart_items);
-            console.log(req.session.username);
             return res.status(200).send({
                 message: "Successful login!"
             });
@@ -45,9 +45,9 @@ function login(req, res) {
 }
 
 function register(req, res) {
-    let username = req.query.username;
-    let password = req.query.password;
-    let password2 = req.query.password2;
+    let username = req.body.username;
+    let password = req.body.password;
+    let password2 = req.body.password2;
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!re.test(String(username).toLowerCase()))
         return res.status(400).send({
@@ -68,7 +68,7 @@ function register(req, res) {
             });
     });
     password = passwordHash.generate(password);
-    makeQuery('INSERT INTO `user` (`username`, `password_hash`) VALUES ("?", "?");', username, password).then(() => {
+    makeQuery('INSERT INTO `user` (`username`, `password_hash`,  `name` , `country` , `city` , `address`) VALUES (?, ?, ?, ?, ?, ?);', username, password, "", "", "", "").then(() => {
 
         return res.status(200).send({
             message: 'Registration successful!'
@@ -81,30 +81,83 @@ function register(req, res) {
 }
 
 function edit(req, res) {
-    let name = req.query.fname + " " + req.query.lname;
-    let country = req.query.country;
-    let city = req.query.country;
-    let address = req.query.address;
-    let password = req.query.password;
-    let password2 = req.query.password2;
-    if (req.session.name == name || !req.query.fname || !req.query.lname) {
+    let name = req.body.fname + " " + req.body.lname;
+    let country = req.body.country;
+    let city = req.body.city;
+    let address = req.body.address;
+    let password = req.body.password;
+    let password2 = req.body.password2;
+    if (req.session.name == name || req.body.fname == "" || req.body.lname == "") {
         name = req.session.name;
+    } else if (name.length > 256) {
+        return res.status(400).send({
+            message: "Your name musn't be over 256 symbols!" 
+        });
     }
-    if (req.session.country == country || !country) {
+
+    if (req.session.country == country || country == "") {
         country = req.session.country;
+    } else if (country.length > 256) {
+        return res.status(400).send({
+            message: "Your country musn't be over 256 symbols!" 
+        });
     }
-    if (req.session.city == city || !city) {
+
+    if (req.session.city == city || city == "") {
         city = req.session.city;
+    } else if (city.length > 256) {
+        return res.status(400).send({
+            message: "Your city musn't be over 256 symbols!" 
+        });
     }
-    if (req.session.address == address || !address) {
+
+    if (req.session.address == address || address == "") {
         address = req.session.address;
+    } else if (address.length > 256) {
+        return res.status(400).send({
+            message: "Your address musn't be over 256 symbols!" 
+        });
     }
-    if (req.session.password == password || !country) {
-        country = req.session.country;
+
+    if (password != "" && password) {
+        if (password.length < 6 || password.length > 32) {
+            return res.status(400).send({
+                message: 'Password must be between 6 and 32 symbols!'
+            });
+        }
+        if (password != password2) {
+            return res.status(400).send({
+                message: "Passwords don't match!" 
+            });
+        }
+        password = passwordHash.generate(password);
+    } else {
+        password = req.session.password;
     }
-    if (req.session.country == country || !country) {
-        country = req.session.country;
-    }
+    makeQuery("Update `user` SET `name` = ?, `country` = ?, `city` = ?, `address` = ?, `password_hash` = ? WHERE `username` = ?;", name, country, city, address, password, req.session.username).then(() => {
+        req.session.name = name;
+        req.session.password = password;
+        req.session.country = country;
+        req.session.city = city;
+        req.session.address = address;
+        return res.status(200).send({
+            message: 'Update successful!'
+        });
+    }).catch((e) => {
+        return res.status(400).send({
+            message: e
+        });
+    });
+}
+
+function logout(res, req) {
+    req.session.destroy((err) => {
+        if(err) {
+            return console.log(err);
+        }
+        res.redirect('/');
+    });
+
 }
 
 
@@ -124,4 +177,8 @@ module.exports = [{
     method: "POST",
     path: '/edit',
     endpointFunction: edit
+}, {
+    method: "GET",
+    path: '/logout',
+    endpointFunction: logout
 }]

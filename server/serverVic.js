@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const publicDir = `${__dirname}/..`;
 const path = require('path')
+const bodyParser = require('body-parser');
 
 const app = express();
 const port = 3000;
@@ -17,6 +18,7 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
+app.use(bodyParser.json())
 
 const routeMap = {
     GET: {
@@ -30,7 +32,7 @@ const routeMap = {
         '/pre-built': getPage('pre-built.html'),
         '/products': getPage('product-listing.html'),
         '/computer': getPage('product_page.html'),
-        '/profile': getPage('profile.html'),
+        '/profile': Auth(req, getPage, 'profile.html'),
         '/register': getPage('register.html'),
         '/not-found': getPage('not-found.html')
     }
@@ -39,6 +41,7 @@ const routeMap = {
 function getPage(pageName) {
     return path.resolve(publicDir + "/" + pageName);
 }
+
 
 app.use('/css', express.static(path.resolve(publicDir + '/css')));
 app.use('/images', express.static(path.resolve(publicDir + '/images')));

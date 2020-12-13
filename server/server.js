@@ -139,7 +139,7 @@ app.post('/login', (req, res) => {
       req.session.country = obj.country ? obj.country : "";
       req.session.address = obj.address ? obj.address : "";
       req.session.photo = obj.photo ? obj.photo : "";
-      req.session.cartItems = JSON.parse(obj.cart_items);
+      //req.session.cartItems = JSON.parse(obj.cart_items);
       console.log(req.session.username);
       return res.status(200).send({
         message: "Successful login!"
