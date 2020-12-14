@@ -173,10 +173,6 @@ app.post('/login', (req, res) => {
       req.session.country = obj.country ? obj.country : "";
       req.session.address = obj.address ? obj.address : "";
       req.session.photo = obj.photo ? obj.photo : "";
-<<<<<<< HEAD
-=======
-      //req.session.cartItems = JSON.parse(obj.cart_items);
->>>>>>> 702f336610e7f6ce475c9372a86bcbc47a314b67
       console.log(req.session.username);
       return res.status(200).send({
         message: "Successful login!"

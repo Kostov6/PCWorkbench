@@ -48,31 +48,10 @@
       <div class="col-md-4 order-md-2 mb-4">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-muted">Your cart</span>
-          <span class="badge badge-secondary badge-pill">3</span>
+          <span class="badge badge-secondary badge-pill" id="count">3</span>
         </h4>
         <ul class="list-group mb-3">
-          <li class="list-group-item d-flex justify-content-between lh-condensed">
-            <div>
-              <h6 class="my-0">Asus TUF GAMING X570-PLUS (WI-FI) ATX AM4 Motherboard</h6>
-              <small class="text-muted font-italic">Category: Motherboards</small>
-            </div>
-            <span class="text-muted">$189.99</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between lh-condensed">
-            <div>
-              <h6 class="my-0">AMD Ryzen 9 3900X 3.8 GHz 12-Core Processor</h6>
-              <small class="text-muted font-italic">Category: Processors</small>
-            </div>
-            <span class="text-muted">$409.99</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between lh-condensed">
-            <div>
-              <h6 class="my-0">Gigabyte GeForce RTX 2080 Ti 11 GB AORUS XTREME WATERFORCE</h6>
-              <small class="text-muted font-italic">Category: Video cards</small>
-            </div>
-            <span class="text-muted">$2499.00</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <li class="list-group-item d-flex justify-content-between lh-condensed" id="shipping">
             <div>
               <h6 class="my-0">Shipping</h6>
             </div>
@@ -80,7 +59,7 @@
           </li>
           <li class="list-group-item d-flex justify-content-between">
             <span>Total (USD)</span>
-            <strong>$3108.98</strong>
+            <strong id="total"></strong>
           </li>
         </ul>
       </div>
@@ -254,5 +233,7 @@
     </div>
   </footer>
 </body>
+
+<script src="client/checkout.js"></script>
 
 </html>

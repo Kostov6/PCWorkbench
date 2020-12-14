@@ -68,6 +68,27 @@ fetch(`http://localhost:3000/cartItems`, {
         subtotal += item.quantity * item.price;
     }
 
+    document.getElementById('build').addEventListener('change', event => {
+        if (event.target.checked) {
+            console.log('test');
+            document.getElementById("built").style.display = "block";
+            document.getElementById("total").innerText = "$" + (subtotal + 35).toFixed(2);
+            document.getElementById('checkout').setAttribute('href', '/checkout?buildPC');
+        } else {
+            console.log('test1');
+            document.getElementById("built").style.cssText = "display:none !important";
+            document.getElementById("total").innerText = "$" + (subtotal + 10).toFixed(2);
+            document.getElementById('checkout').setAttribute('href', '/checkout');
+        }
+    });
+
+    if (document.getElementById('build').checked) {
+        document.getElementById("built").style.display = "block";
+        document.getElementById("total").innerText = "$" + (subtotal + 35).toFixed(2);
+
+        document.getElementById('checkout').setAttribute('href', '/checkout?buildPC');
+    }
+
     document.getElementById('subtotal').innerText = "$" + subtotal.toFixed(2);
     document.getElementById('total').innerText = "$" + (subtotal + 10).toFixed(2);
 
@@ -107,15 +128,4 @@ function updatePrice() {
 
         console.log(errData);
     }));
-}
-
-function change(event) {
-    if (event.checked) {
-        document.getElementById("built").style.display = "block";
-        document.getElementById("total").innerText = "$" + (subtotal + 35).toFixed(2);
-    } else {
-        document.getElementById("built").style.cssText =
-        "display:none !important";
-        document.getElementById("total").innerText = "$" + (subtotal + 10).toFixed(2);
-    }
 }
