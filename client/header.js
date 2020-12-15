@@ -3,33 +3,33 @@ window.addEventListener('load', (event) => {
     <a class="navbar-brand" href="/">PC Workbench</a>
     <ul class="navbar-nav">
       <li class="nav-item  mx-2">
-        <a class="nav-link" href="/" id="home">Home</a>
+        <a class="nav-link" href="/" id="navhome">Home</a>
       </li>
       <li class="nav-item mx-2">
-        <a class="nav-link" href="/pre-built" id="pre-built">Prebuilt PCs</a>
+        <a class="nav-link" href="/pre-built" id="navpre-built">Prebuilt PCs</a>
       </li>
       <li class="nav-item mx-2">
-        <a class="nav-link" href="/build-PC" id="build-PC">Build PC</a>
+        <a class="nav-link" href="/build-PC" id="navbuild-PC">Build PC</a>
       </li>
       <li class="nav-item mx-2">
-        <a class="nav-link" href="/components" id="components">Components</a>
+        <a class="nav-link" href="/components" id="navcomponents">Components</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item mx-2" id="bprofile.html">
-        <a class="nav-link" href="/profile" id="profile"><i class="fas fa-user"></i> Profile</a>
+        <a class="nav-link" href="/profile" id="navprofile"><i class="fas fa-user"></i> Profile</a>
       </li>
       <li class="nav-itme mx-2" id="blogout">
-        <a class="nav-link" href="/" id="logout"><i class="fas fa-sign-out-alt fa-lg"></i></span> Sign Out</a>
+        <a class="nav-link" href="/" id="navlogout"><i class="fas fa-sign-out-alt fa-lg"></i></span> Sign Out</a>
       </li>
       <li class="nav-item mx-2" id="bregister.html">
-        <a class="nav-link" href="/register" id="register"><i class="fas fa-user"></i> Sign Up</a>
+        <a class="nav-link" href="/register" id="navregister"><i class="fas fa-user"></i> Sign Up</a>
       </li>
       <li class="nav-itme mx-2" id="blogin.html">
-        <a class="nav-link" href="/login" id="login"><i class="fas fa-sign-in-alt fa-lg"></i></span> Sign In</a>
+        <a class="nav-link" href="/login" id="navlogin"><i class="fas fa-sign-in-alt fa-lg"></i></span> Sign In</a>
       </li>
       <li class="nav-itme mx-2">
-        <a class="nav-link" href="/cart" id="cart"><i class="fas fa-shopping-cart"></i></span> Cart</a>
+        <a class="nav-link" href="/cart" id="navcart"><i class="fas fa-shopping-cart"></i></span> Cart</a>
       </li>
     </ul>`
   const nav = document.createElement("nav");
@@ -41,6 +41,7 @@ window.addEventListener('load', (event) => {
   path = path.split("?");
   let page = path[0].split("/").pop();
   if (page.length == 0) page = "home";
+  page = "nav" + page;
   let pageButton = document.getElementById(page);
   if (pageButton) {
     pageButton.setAttribute("class", "nav-link active");
