@@ -52,6 +52,16 @@ function filterIt(event) {
     }
 }
 
+function getUnownedItems() {
+    const res = [];
+    for (item in chosenComponents) {
+        if (chosenComponents[item] != "" && !chosenComponents[item].owned) {
+            res.push(chosenComponents[item]);
+        }
+    }
+    return res;
+}
+
 function componentFilter(components) {
     return components.filter(item => {
         return (item.type == componentTypeFilter || componentTypeFilter == "") && (item.brand == manufacturerFilter || manufacturerFilter == "")
@@ -207,7 +217,7 @@ function clearBorders() {
     document.getElementById("motherboard").style.border = noBorder;
     document.getElementById("cpu").style.border = noBorder;
     document.getElementById("gpu").style.border = noBorder;
-    document.getElementById("power").style.border = noBorder;
+    document.getElementById("HDD").style.border = noBorder;
     document.getElementById("ram").style.border = noBorder;
     document.getElementById("supply").style.border = noBorder;
     document.getElementById("chassis").style.border = noBorder;
@@ -245,11 +255,11 @@ $(document).ready(function () {
         updateComponentView();
     });
 
-    document.getElementById("power").addEventListener("click", (event) => {
+    document.getElementById("HDD").addEventListener("click", (event) => {
         clearBorders();
-        document.getElementById("power").style.border = "4px solid gray";
-        componentTypeFilter = "power";
-        console.log("power");
+        document.getElementById("HDD").style.border = "4px solid gray";
+        componentTypeFilter = "HDD";
+        console.log("HDD");
         updateComponentView();
     });
 
@@ -265,7 +275,7 @@ $(document).ready(function () {
         clearBorders();
         document.getElementById("supply").style.border = "4px solid gray";
         componentTypeFilter = "supply";
-        console.log("HDD");
+        console.log("supply");
         updateComponentView();
     });
 

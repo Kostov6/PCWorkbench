@@ -1,0 +1,35 @@
+ram-8gb proc-intel-i5 gpu-nvidia-500 hdd-ssd
+./images/office/office1.jpg
+DELL PTIPLEX 3070 (CPJT9) - Business Desktop PC - Intel Core i5 9500 (6-Core 3.0 GHz), 8 GB DDR4, 256 GB SSD, Intel H370, Small Form Factor                  
+$639.99
+
+ram-16gb proc-intel-i5 gpu-nvidia-500 hdd-ssd
+./images/office/office3.jpg
+HP Slimeline 290 Desktop, Intel Core i5-8400 Upto 4.0GHz, 16GB RAM, 512GB NVMe SSD, Intel UHD
+                            Graphics 630, Wi-Fi, Bluetooth
+$739.99
+
+ram-16gb proc-intel-i5 gpu-nvidia-500 hdd-ssd
+./images/office/office2.jpg
+HP ProDesk 600 G4 SFF Desktop - i5-8500, 16 GB DDR4, 256 GB SSD, Intel UHD Graphics 630
+$830.00
+
+ram-32gb proc-intel-i5 gpu-intel-500 hdd-ssd
+./images/office/office4.jpg
+Acer Aspire TC Desktop, 9th Gen Intel Core i5-9400 6-Core Processor,32GB DDR4 RAM,256GB SSD,Intel
+                            UHD Graphics 630,DVD-RW,Wifi-AC,Bluetooth 5.0,USB,VGA,HDMI,Dual Monitor Capable</a>
+$849.00
+
+{
+"processor" : "Intel Core i5 9500 (6-Core 3.0 GHz)",
+"chipset" : "Intel chipset A100",
+"memory" : "8 GB DDR4",
+"video_graphics" : "Intel H370",
+"hard_drives" : "256 GB SSD",
+"power_supply" : "500W Gold cables fan cooled",
+"network_connectivity" : "WiFi and LAN support",
+"chassis_fan" : "3x14mm fans",
+"expansion_slots" : "3x2.1 USB, 3x3.0 USB",
+"ports" :"3x2.1 USB, 3x3.0 USB, HDMI, LAN",
+"video_connectivity" : "HDMI"
+}

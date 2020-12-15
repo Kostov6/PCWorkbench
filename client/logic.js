@@ -14,7 +14,7 @@ class component {
 
 chosenComponents["cpu"] = "";
 chosenComponents["gpu"] = "";
-chosenComponents["power"] = "";
+chosenComponents["HDD"] = "";
 chosenComponents["fan"] = "";
 chosenComponents["motherboard"] = "";
 chosenComponents["ram"] = "";
@@ -33,11 +33,11 @@ function validPowerSupplies() {
     invalidNames = new Array();
     for (i = 0; i < allComponents.length; i++) {
         current = allComponents[i];
-        if (current.type == "power" && current.data1.split(" ")[0] < wattage) {
+        if (current.type == "supply" && current.data2.split("W")[0] < wattage) {
             //invalid
             invalidNames.push(current.name);
         }
-        if (current.type == "power" && current.data1.split(" ")[0] >= wattage) {
+        if (current.type == "supply" && current.data2.split("W")[0] >= wattage) {
             //valid
             validNames.push(current.name);
         }
@@ -96,9 +96,12 @@ function owned(event) {
     if (document.getElementById(event.target.id).checked) {
         price -= chosenComponents[id].price;
         parts--;
+        chosenComponents[id].owned = true;
     } else {
         price += chosenComponents[id].price;
         parts++;
+        chosenComponents[id].owned = false;
     }
+
     update();
 }

@@ -21,7 +21,7 @@ if (pcId !== null && pcId !== "") {
             const pcInfo = data;
             console.log(data);
             setElement("fullTitle", pcInfo.title);
-            setElement("price", pcInfo.price);
+            setElement("price", "$" + pcInfo.price);
             setElement("overview", pcInfo.description_long);
             //set image
             document.getElementById("pcImage").setAttribute("src", pcInfo.photo)
@@ -34,18 +34,28 @@ if (pcId !== null && pcId !== "") {
             }
 
             const spec = pcInfo.specifications_details;
-            setElement("processor", spec.processor.title);
-            setElement("chipset", spec.chipset.title);
-            setElement("memory", spec.memory.title);
-            setElement("hard_drives", spec.hard_drives.title);
-            setElement("video_graphics", spec.video_graphics.title);
-            setElement("power_supply", spec.power_supply.title);
+            setElement("processor", spec.processor);
+            setElement("chipset", spec.chipset);
+            setElement("memory", spec.memory);
+            setElement("hard_drives", spec.hard_drives);
+            setElement("video_graphics", spec.video_graphics);
+            setElement("power_supply", spec.power_supply);
             setElement("network_connectivity", spec.network_connectivity);
             setElement("chassis_fan", spec.chassis_fan);
             setElement("expansion_slots", spec.expansion_slots);
             setElement("ports", spec.ports);
             setElement("video_connectivity", spec.video_connectivity);
 
+            document.getElementById('add_to_cart').addEventListener('click', event => {
+                event.preventDefault();
+                fetch('http://localhost:3000/addToCart', {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    method: "POST",
+                    body: JSON.stringify([{id: pcInfo.id, quantity: parseInt(document.getElementById('count').value)}])
+                })
+            })
         })
         .catch((err) => err.then(errData => {
 
