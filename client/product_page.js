@@ -46,6 +46,16 @@ if (pcId !== null && pcId !== "") {
             setElement("ports", spec.ports);
             setElement("video_connectivity", spec.video_connectivity);
 
+            document.getElementById('add_to_cart').addEventListener('click', event => {
+                event.preventDefault();
+                fetch('http://localhost:3000/addToCart', {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    method: "POST",
+                    body: JSON.stringify([{id: pcInfo.id, quantity: parseInt(document.getElementById('count').value)}])
+                })
+            })
         })
         .catch((err) => err.then(errData => {
 

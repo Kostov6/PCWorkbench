@@ -12,9 +12,9 @@ fetch(`http://localhost:3000/cartItems`, {
 
     for (let item of data) {
         let tr = document.createElement('tr');
-        tr.innerHTML = `<th scope="row">
+        tr.innerHTML = `<td class="align-middle" style="width: 10%"><img src="${item.photo}" alt="" width="95" class="img-fluid rounded shadow-sm" /></td>
+        <td scope="row">
             <div class="p-2">
-                <img src="${item.photo}" alt="" width="95" class="img-fluid rounded shadow-sm" />
                 <div class="ml-3 d-inline-block align-middle">
                 <h5 class="mb-0">
                     <a href="/" class="text-dark d-inline-block" id="redirect">${item.title}</a>
@@ -22,7 +22,7 @@ fetch(`http://localhost:3000/cartItems`, {
                 <span class="text-muted font-weight-normal font-italic">Category: ${item.type}</span>
                 </div>
             </div>
-        </th>
+        </td>
         <td class="align-middle"><strong class="price">$${item.price}</strong></td>
         <td class="align-middle" style="width: 75px;">
             <input class="form-control" type="number" value="${item.quantity}" />
