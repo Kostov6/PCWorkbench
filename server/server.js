@@ -3,6 +3,7 @@ const passwordHash = require('password-hash');
 const session = require('express-session');
 const publicDir = `${__dirname}/..`;
 const path = require('path')
+const bodyParser = require('body-parser');
 
 const app = express();
 const port = 3000;
@@ -14,6 +15,8 @@ app.use(session({
 }));
 
 const mysql = require('mysql');
+const { get } = require('https');
+const { resolve } = require('path');
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -35,9 +38,12 @@ const routeMap = {
     '/computer': getPage('product_page.html'),
     '/profile': getPage('profile.html'),
     '/register': getPage('register.html'),
-    '/not-found': getPage('not-found.html')
+    '/not-found': getPage('not-found.html'),
+    '/checkout': getPage('checkout.html')
   }
 }
+
+app.use(bodyParser.json());
 
 function getPage(pageName) {
   return path.resolve(publicDir + "/" + pageName);
@@ -55,8 +61,7 @@ app.get('/info', (req, res) => {
     name: req.session.name,
     country: req.session.country,
     address: req.session.address,
-    photo: req.session.photo,
-    cart: req.session.cartItems
+    photo: req.session.photo
   });
 })
 
@@ -86,6 +91,35 @@ app.get('/getProductsByType', (req, res) => {
     res.send(rows);
   });
 })
+
+function getCartItems(req) {
+  return makeQuery('SELECT cart_items FROM user WHERE username = ?', req.session.username).then(data => {
+    if (data.length != 0) {
+      data = JSON.parse(data[0]['cart_items']);
+      console.log(data);
+      let itemIds = data.map(obj => obj.id);
+      
+      if (itemIds.length != 0) {
+        return makeQuery('SELECT id, title, type, price, photo FROM products WHERE id IN (?)', itemIds).then(rows => {
+        
+          for (let obj in rows) {
+            rows[obj].quantity = data[obj].quantity;
+          }
+          
+          return rows;
+        })
+      } else {
+        return [];
+      }
+    } else {
+      return [];
+    }
+  }) 
+}
+
+app.get('/cartItems', (req, res) => {
+  getCartItems(req).then(data => res.send(data));
+});
 
 app.post('/register', (req, res) => {
   let username = req.query.username;
@@ -139,7 +173,6 @@ app.post('/login', (req, res) => {
       req.session.country = obj.country ? obj.country : "";
       req.session.address = obj.address ? obj.address : "";
       req.session.photo = obj.photo ? obj.photo : "";
-      req.session.cartItems = JSON.parse(obj.cart_items);
       console.log(req.session.username);
       return res.status(200).send({
         message: "Successful login!"
@@ -178,6 +211,28 @@ app.post('/edit', (req, res) => {
     country = req.session.country;
   }
 })
+
+app.post('/updateCart', (req, res) => {
+  makeQuery('SELECT cart_items FROM user WHERE username = ?', req.session.username).then(data => {
+    if (data.length != 0) {
+      let update = req.body;
+      data = JSON.parse(data[0]['cart_items']);
+
+      for (let index in data) {
+        if (update.quantity <= 0 && data[index].id == update.id) {
+          data.splice(index, 1);
+        } else if (data[index].id == update.id) {
+          data[index].quantity = update.quantity;
+        }
+      }
+
+      res.send();
+      makeQuery('UPDATE user SET cart_items = ? WHERE username = ?', JSON.stringify(data), req.session.username);
+    } 
+
+    res.send();
+  });
+});
 
 app.get('/getAllComponents', (req, res) => {
     let brand = req.query.brand;

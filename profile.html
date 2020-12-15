@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./fontawesome-free-5.13.0-web/css/all.css">
     <link rel="stylesheet" href="./css/profile.css">
+    <style>
+        .activeErr {
+        padding: 0.5rem;
+        border: 1px solid red;
+      }
+      </style>
 </head>
 
 <body>
@@ -222,92 +228,53 @@
                     </div>
                     <div class="tab-pane" id="edit">
                         <form role="form">
+                            <div id="err">
+
+                            </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">First name</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" type="text" value="John">
+                                    <input class="form-control" type="text" placeholder="John" id="efname">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Last name</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" type="text" value="Smith">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">Email</label>
-                                <div class="col-lg-9">
-                                    <input class="form-control" type="email" value="email@gmail.com">
+                                    <input class="form-control" type="text" placeholder="Smith" id="elname">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Address</label>
                                 <div class="col-lg-4">
-                                    <input class="form-control" type="text" value="" placeholder="Country">
+                                    <input class="form-control" type="text" value="" placeholder="Country" id="ecountry">
                                 </div>
                                 <div class="col-lg-5">
-                                    <input class="form-control" type="text" value="" placeholder="City">
+                                    <input class="form-control" type="text" value="" placeholder="City" id="ecity">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label"></label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" type="text" value="" placeholder="Street">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">Time Zone</label>
-                                <div class="col-lg-9">
-                                    <select id="user_time_zone" class="form-control" size="0">
-                                        <option value="Hawaii">(GMT-10:00) Hawaii</option>
-                                        <option value="Alaska">(GMT-09:00) Alaska</option>
-                                        <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US
-                                            &amp; Canada)</option>
-                                        <option value="Arizona">(GMT-07:00) Arizona</option>
-                                        <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US
-                                            &amp; Canada)</option>
-                                        <option value="Central Time (US &amp; Canada)">(GMT-06:00) Central Time (US
-                                            &amp; Canada)</option>
-                                        <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US
-                                            &amp; Canada)</option>
-                                        <option value="Atlantic Time">(GMT-04:00) Atlantic Time</option>
-                                        <option value="Argentina Time">(GMT-03:00) Argentina Time</option>
-                                        <option value="Azores Time">(GMT-02:00) Azores Time</option>
-                                        <option value="West Africa Time">(GMT-01:00) West Africa Time</option>
-                                        <option value="Greenwich Mean Time" selected="selected">(GMT+00:00) Greenwich Mean Time</option>
-                                        <option value="Central European Time">(GMT+01:00) Central European Time</option>
-                                        <option value="Eastern European Time">(GMT+02:00) Eastern
-                                            European Time</option>
-                                        <option value="Moscow Time">(GMT+03:00) Moscow Time</option>
-                                        <option value="Armenia Time">(GMT+04:00) Armenia Time</option>
-                                        <option value="Pakistan Standard Time">(GMT+05:00) Pakistan Standard Time
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">Username</label>
-                                <div class="col-lg-9">
-                                    <input class="form-control" type="text" value="johnsmith">
+                                    <input class="form-control" type="text" value="" placeholder="Street" id="estreet">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Password</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" type="password" value="11111122333">
+                                    <input class="form-control" type="password" value="" id="epassword">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" type="password" value="11111122333">
+                                    <input class="form-control" type="password" value="" id="epassword2">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label"></label>
                                 <div class="col-lg-9">
                                     <input type="reset" class="btn btn-secondary" value="Cancel">
-                                    <input type="button" class="btn btn-dark" value="Save Changes">
+                                    <input id="save" type="button" class="btn btn-dark" value="Save Changes">
                                 </div>
                             </div>
                             <div style="height: 143px;"></div>
