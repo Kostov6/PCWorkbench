@@ -42,14 +42,16 @@ window.addEventListener('load', (event) => {
   let page = path[0].split("/").pop();
   if (page.length == 0) page = "home";
   let pageButton = document.getElementById(page);
-  pageButton.setAttribute("class", "nav-link active");
+  if (pageButton) {
+    pageButton.setAttribute("class", "nav-link active");
+  }
   fetch(`http://localhost:3000/logged`, {
     method: "GET",
   })
     .then(response => {
       if (!response.ok)
         return Promise.reject();
-      else 
+      else
         return Promise.resolve(response.json());
     }).then((data) => {
       if (data.message != "Logged!") {
@@ -60,7 +62,7 @@ window.addEventListener('load', (event) => {
         document.getElementById("blogin.html").style.display = "none";
       }
     })
-    .catch (() => 
+    .catch(() =>
       console.log("error!")
     );
 })
