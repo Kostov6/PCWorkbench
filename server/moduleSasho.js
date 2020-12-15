@@ -25,11 +25,11 @@ function login(req, res) {
             return res.status(400).send({
                 message: `${username} is not registered!`
             });
-        if (passwordHash.verify(password, obj.password_hash.replace(/'/g, ''))) {
+        if (passwordHash.verify(password, obj.password_hash)) {
             req.session.logged = true;
             req.session.username = obj.username;
             req.session.name = obj.name ? obj.name : "";
-            req.session.password = obj.password_hash.replace(/'/g, '');
+            req.session.password = obj.password_hash;
             req.session.country = obj.country ? obj.country : "";
             req.session.city = obj.city ? obj.city : "";
             req.session.address = obj.address ? obj.address : "";
@@ -151,7 +151,6 @@ function edit(req, res) {
 }
 
 function logged(req, res) {
-    console.log(req.session);
     if (req.session && req.session.logged) {
         return res.status(200).send({
             message: 'Logged!'
@@ -164,9 +163,13 @@ function logged(req, res) {
 function logout(req, res) {
     req.session.destroy((err) => {
         if (err) {
-            return console.log(err);
+            return res.status(400).send({
+                message: err
+            });
         }
-        res.redirect('/');
+        return res.status(200).send({
+            message: "Logout"
+        });
     });
 
 }
