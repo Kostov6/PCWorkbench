@@ -55,10 +55,18 @@ function getCartItems(req) {
 }
 
 function cartItems(req, res) {
+    if (req.session.username == undefined) {
+        res.send();
+    }
+
     getCartItems(req).then(data => res.send(data));
 };
   
 function addToCart(req, res) { //TODO Test this and others with wrong parameters
+    if (req.session.username == undefined) {
+        res.send();
+    }
+
     makeQuery('SELECT cart_items FROM user WHERE username = ?', req.session.username).then(data => {
       if (data.length != 0) {
         let updates = req.body;
@@ -96,6 +104,10 @@ function addToCart(req, res) { //TODO Test this and others with wrong parameters
 }
 
 function updateCart(req, res) {
+    if (req.session.username == undefined) {
+        res.send();
+    }
+
     makeQuery('SELECT cart_items FROM user WHERE username = ?', req.session.username).then(data => {
       if (data.length != 0) {
         let update = req.body;

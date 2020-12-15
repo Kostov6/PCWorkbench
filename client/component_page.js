@@ -45,8 +45,8 @@ if (partId !== null && partId !== "") {
                     },
                     method: "POST",
                     body: JSON.stringify([{id: partInfo.id, quantity: parseInt(document.getElementById('count').value)}])
-                })
-            })
+                });
+            });
         })
         .catch((err) => err.then(errData => {
 

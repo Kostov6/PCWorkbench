@@ -295,6 +295,25 @@ $(document).ready(function () {
         updateComponentView();
     });
 
+    document.getElementById('add_to_cart').addEventListener('click', event => {
+        let items = getUnownedItems(); 
+        items = items.map(item => { 
+            let obj = {};
+            obj.id = item.id;
+            obj.quantity = 1;
+
+            return obj;
+         });
+
+        fetch('http://localhost:3000/addToCart', {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(items)
+        });
+    });
+
     fetch("http://localhost:3000/getAllComponents")
         .then(response => response.json())
         .then(dataReceived => {
