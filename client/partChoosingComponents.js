@@ -71,12 +71,14 @@ function addComponentToView(component) {
     btnWrap = document.createElement("div");
     btnWrap.setAttribute("class", "col-1 align-self-center");
 
-    buttonNode = document.createElement("button");
+    buttonNode = document.createElement("a");
     buttonNode.setAttribute("class", "addButton btn btn-sm btn-outline-dark text-nowrap");
     buttonNode.setAttribute("style", "margin-left: -20px");
-    textNode = document.createTextNode("Add to cart");
+    buttonNode.setAttribute("href", "./component?id=" + component.id);
+    textNode = document.createTextNode("Buy now");
     buttonNode.appendChild(textNode);
     btnWrap.appendChild(buttonNode);
+
 
     //componentNode.appendChild(imageNode);
     componentNode.appendChild(imgWrap);

@@ -15,7 +15,7 @@ function getAllComponents(req, res) {
                 "id": obj.id,
                 "name": obj.title,
                 "type": obj.type,
-                "wattage": 69,
+                "wattage": obj.wattage,
                 "price": obj.price,
                 "data1": obj.specifications_details.model.Brand,
                 "data2": obj.specifications_details.model.Brand,
@@ -30,7 +30,7 @@ function getAllComponents(req, res) {
                     break;
                 case "gpu":
                     converted.data1 = obj.specifications_details.model["Model"];
-                    converted.data2 = obj.specifications_details.details["Memory Size"] + " GB";
+                    converted.data2 = obj.specifications_details.details["Memory Size"] + " GDDR5";
                     break;
                 case "motherboard":
                     converted.data1 = obj.specifications_details.model["Model"];
@@ -39,6 +39,26 @@ function getAllComponents(req, res) {
                 case "ram":
                     converted.data1 = obj.specifications_details.details["Capacity"];
                     converted.data2 = obj.specifications_details.details["Speed"];
+                    break;
+                case "supply":
+                    converted.data1 = obj.specifications_details.model.Brand;
+                    converted.data2 = obj.wattage + "W";
+                    converted.wattage = 0;
+                    break;
+                case "HDD":
+                    converted.data1 = obj.specifications_details.model.Storage;
+                    converted.data2 = obj.specifications_details.model.Type;
+                    converted.wattage = 0;
+                    break;
+                case "chassis":
+                    converted.data1 = obj.specifications_details.model.Dimensions;
+                    converted.data2 = obj.specifications_details.model.Model;
+                    converted.wattage = 0;
+                    break;
+                case "fan":
+                    converted.data1 = obj.specifications_details.model.RPM;
+                    converted.data2 = obj.specifications_details.model.Model;
+                    converted.wattage = 0;
                     break;
             }
 

@@ -33,6 +33,9 @@ constructFilter("Processor", [{
 }])
 
 constructFilter("Graphics card", [{
+    filterID: "gpu-nvidia-500",
+    filterName: "NVIDIA 500 series"
+}, {
     filterID: "gpu-nvidia-1000",
     filterName: "NVIDIA 1000 series"
 }, {
@@ -105,7 +108,7 @@ function getProductItem({
                         <a class="m-3 text-dark h5" href="./computer?id=${id}" style="text-decoration: none;">${title}</a>
                         <div class="bottom-wrap mx-3 mb-3 mt-auto">
                             <div class="mt-2">
-                                <a href="" class="btn btn-sm btn-dark float-right">Add to cart</a>
+                                <a href="./computer?id=${id}" class="btn btn-sm btn-dark float-right">Buy now</a>
                                 <div class="price-wrap h4">
                                     <span class="price-new">$${price}</span>
                                 </div> <!-- price-wrap.// -->
@@ -113,7 +116,7 @@ function getProductItem({
                         </div> <!-- bottom-wrap.// -->
                     </figure>
                 `;
-}
+} //<a href="" class="btn btn-sm btn-dark float-right">Add to cart</a> 111 row
 
 
 
