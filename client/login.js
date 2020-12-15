@@ -1,8 +1,8 @@
-document.getElementById("login").addEventListener("click", function () {
+document.getElementById("loginn").addEventListener("click", function () {
     const email = document.getElementById("email").value;
     const pass = document.getElementById("pass").value;
     const data = { username: email, password: pass };
-    fetch(`http://localhost:3000/login?username=${email}&password=${pass}`, {
+    fetch(`http://localhost:3000/login`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -10,7 +10,6 @@ document.getElementById("login").addEventListener("click", function () {
             body: JSON.stringify(data),
         })
         .then(response => {
-            console.log(response.ok);
             if (!response.ok)
                 return Promise.reject(response.json());
         })

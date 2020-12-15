@@ -32,7 +32,7 @@ const routeMap = {
         '/pre-built': getPage('pre-built.html'),
         '/products': getPage('product-listing.html'),
         '/computer': getPage('product_page.html'),
-        '/profile': Auth(req, getPage, 'profile.html'),
+        '/profile': getPage('profile.html'),
         '/register': getPage('register.html'),
         '/not-found': getPage('not-found.html')
     }

@@ -91,7 +91,7 @@ function edit(req, res) {
         name = req.session.name;
     } else if (name.length > 256) {
         return res.status(400).send({
-            message: "Your name musn't be over 256 symbols!" 
+            message: "Your name musn't be over 256 symbols!"
         });
     }
 
@@ -99,7 +99,7 @@ function edit(req, res) {
         country = req.session.country;
     } else if (country.length > 256) {
         return res.status(400).send({
-            message: "Your country musn't be over 256 symbols!" 
+            message: "Your country musn't be over 256 symbols!"
         });
     }
 
@@ -107,7 +107,7 @@ function edit(req, res) {
         city = req.session.city;
     } else if (city.length > 256) {
         return res.status(400).send({
-            message: "Your city musn't be over 256 symbols!" 
+            message: "Your city musn't be over 256 symbols!"
         });
     }
 
@@ -115,7 +115,7 @@ function edit(req, res) {
         address = req.session.address;
     } else if (address.length > 256) {
         return res.status(400).send({
-            message: "Your address musn't be over 256 symbols!" 
+            message: "Your address musn't be over 256 symbols!"
         });
     }
 
@@ -127,7 +127,7 @@ function edit(req, res) {
         }
         if (password != password2) {
             return res.status(400).send({
-                message: "Passwords don't match!" 
+                message: "Passwords don't match!"
             });
         }
         password = passwordHash.generate(password);
@@ -150,9 +150,20 @@ function edit(req, res) {
     });
 }
 
-function logout(res, req) {
+function logged(req, res) {
+    console.log(req.session);
+    if (req.session && req.session.logged) {
+        return res.status(200).send({
+            message: 'Logged!'
+        });
+    } else return res.status(200).send({
+        message: "Not Logged!"
+    });
+}
+
+function logout(req, res) {
     req.session.destroy((err) => {
-        if(err) {
+        if (err) {
             return console.log(err);
         }
         res.redirect('/');
@@ -181,4 +192,8 @@ module.exports = [{
     method: "GET",
     path: '/logout',
     endpointFunction: logout
+}, {
+    method: "GET",
+    path: '/logged',
+    endpointFunction: logged
 }]

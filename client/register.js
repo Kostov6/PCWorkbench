@@ -3,7 +3,7 @@ document.getElementById("register").addEventListener("click", function () {
     const pass = document.getElementById("pass").value;
     const pass2 = document.getElementById("pass2").value;
     const data = { username: email, password: pass, password2: pass2};
-    fetch(`http://localhost:3000/register?username=${email}&password=${pass}&password2=${pass2}`, {
+    fetch(`http://localhost:3000/register`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
