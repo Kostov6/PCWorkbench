@@ -121,6 +121,43 @@ app.get('/cartItems', (req, res) => {
   getCartItems(req).then(data => res.send(data));
 });
 
+app.post('/addToCart', (req, res) => { //TODO Test this and others with wrong parameters
+  makeQuery('SELECT cart_items FROM user WHERE username = ?', req.session.username).then(data => {
+    if (data.length != 0) {
+      let updates = req.body;
+      data = JSON.parse(data[0]['cart_items']);
+      let added = updates.map(() => false);
+
+      
+      for (let update in updates) {
+        if (updates[update].quantity <= 0) {
+          added[update] = true;
+          continue;
+        }
+
+        for (let index in data) {
+          if (data[index].id == updates[update].id) {
+            data[index].quantity += updates[update].quantity;
+            added[update] = true;
+            continue;
+          }
+        }
+      }
+
+      for (let update in updates) {
+        if (!added[update]) {
+          data.push(updates[update]);
+        }
+      }
+
+      res.send();
+      makeQuery('UPDATE user SET cart_items = ? WHERE username = ?', JSON.stringify(data), req.session.username);
+    } 
+
+    res.send();
+  });
+})
+
 app.post('/register', (req, res) => {
   let username = req.query.username;
   let password = req.query.password;

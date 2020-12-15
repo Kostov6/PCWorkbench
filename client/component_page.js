@@ -22,7 +22,7 @@ if (partId !== null && partId !== "") {
             console.log(data);
 
             setElement("fullTitle", partInfo.title);
-            setElement("price", partInfo.price);
+            setElement("price", "$" + partInfo.price);
             //set image
             document.getElementById("partImage").setAttribute("src", partInfo.photo)
             //add specification overview
@@ -36,6 +36,17 @@ if (partId !== null && partId !== "") {
             const details = partInfo.specifications_details.details;
             addRows("model", model);
             addRows("details", details);
+
+            document.getElementById('add_to_cart').addEventListener('click', event => {
+                event.preventDefault();
+                fetch('http://localhost:3000/addToCart', {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    method: "POST",
+                    body: JSON.stringify([{id: partInfo.id, quantity: parseInt(document.getElementById('count').value)}])
+                })
+            })
         })
         .catch((err) => err.then(errData => {
 
