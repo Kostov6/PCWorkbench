@@ -22,6 +22,10 @@ chosenComponents["supply"] = "";
 chosenComponents["chassis"] = "";
 
 function update() {
+    if (typeof price == 'number') {
+        price = price.toFixed(2);
+    }
+
     document.getElementById("parts").innerText = parts;
     document.getElementById("price").innerText = "$" + price;
     document.getElementById("wattage").innerText = wattage;
@@ -93,11 +97,17 @@ function remove(event) {
 function owned(event) {
     id = event.target.id.substr(1);
     console.log(document.getElementById(event.target.id).checked);
+
+    if (typeof price == 'string') {
+        price = parseFloat(price);
+    }
+
     if (document.getElementById(event.target.id).checked) {
         price -= chosenComponents[id].price;
         parts--;
         chosenComponents[id].owned = true;
     } else {
+        parseFloat()
         price += chosenComponents[id].price;
         parts++;
         chosenComponents[id].owned = false;

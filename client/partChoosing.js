@@ -129,6 +129,8 @@ function addComponent(event) {
     document.getElementById(comp.type).style.visibility = "hidden";
     document.getElementById(comp.type + "I").style.visibility = "visible";
     document.getElementById(comp.type + "T").innerText = comp.name;
+    document.getElementById(comp.type + "T").setAttribute('href', './component?id=' + comp.id);
+
     if (chosenComponents[comp.type] != "" && !document.getElementById("C" + comp.type).checked) {
         price -= chosenComponents[comp.type].price;
         wattage -= chosenComponents[comp.type].wattage;
@@ -138,6 +140,11 @@ function addComponent(event) {
     } else {
         parts++;
     }
+
+    if (typeof price == 'string') {
+        price = parseFloat(price);
+    }
+
     chosenComponents[comp.type] = comp;
     price += comp.price;
     wattage += comp.wattage;

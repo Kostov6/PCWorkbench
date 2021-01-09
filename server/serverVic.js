@@ -38,10 +38,11 @@ const routeMap = {
     }
 }
 
+const authArray = ['/cart', '/checkout', '/profile'];
+
 function getPage(pageName) {
     return path.resolve(publicDir + "/" + pageName);
 }
-
 
 app.use('/css', express.static(path.resolve(publicDir + '/css')));
 app.use('/images', express.static(path.resolve(publicDir + '/images')));
@@ -60,6 +61,10 @@ for (module of modules) {
 app.get('*', (req, res) => {
     let page = req.url.split('?')[0];
     if (Object.keys(routeMap.GET).includes(page)) {
+        if (authArray.includes(page) && !req.session.logged) {
+            res.sendFile(routeMap.GET['/login']);
+        }
+
         res.sendFile(routeMap.GET[page]);
     } else {
         res.sendFile(routeMap.GET['/not-found']);
