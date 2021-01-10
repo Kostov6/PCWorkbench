@@ -62,8 +62,6 @@ function getAllComponents(req, res) {
                     break;
             }
 
-
-            console.log(converted);
             return converted;
         })
 

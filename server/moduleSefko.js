@@ -33,7 +33,6 @@ function getCartItems(req) {
     return makeQuery('SELECT cart_items FROM user WHERE username = ?', req.session.username).then(data => {
       if (data.length != 0) {
         data = JSON.parse(data[0]['cart_items']);
-        console.log(data);
         let itemIds = data.map(obj => obj.id);
         
         if (itemIds.length != 0) {
